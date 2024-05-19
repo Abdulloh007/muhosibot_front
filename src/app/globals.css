@@ -1,0 +1,33 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@import "@/Components/tableComponent/test.css";
+
+.header {
+  padding: 20px 24px 20px 24px;
+}
+
+body {
+  background-color: #fafafa;
+}
+
+.custom-style {
+  background-color: white;
+}
+
+th {
+  background-color: white;
+}
+
+.container-form {
+  padding: 30px 0 30px 30px;
+  background: white;
+}
+
+.data-\[hover\=true\]\:bg-default-200[data-hover="true"] {
+  @apply bg-default-100;
+}
+
+.itemSt {
+  align-items: start;
+}
