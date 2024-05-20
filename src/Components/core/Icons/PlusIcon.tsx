@@ -1,6 +1,6 @@
 import React, { FC, SVGProps } from "react";
 
-const PlusIcon: FC<SVGProps<SVGSVGElement>> = ({ size = 24, width = "24", height = "24", ...props }) => (
+const PlusIcon: FC<SVGProps<SVGSVGElement>> = ({ width = "24", height = "24", ...props }) => (
   <svg
     aria-hidden="true"
     fill="none"

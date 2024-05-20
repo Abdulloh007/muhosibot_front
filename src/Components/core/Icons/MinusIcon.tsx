@@ -1,6 +1,6 @@
 import React, { FC, SVGProps } from "react";
 
-const MinusIcon: FC<SVGProps<SVGSVGElement>> = ({ size = 24, width = "24", height = "24", ...props }) => (
+const MinusIcon: FC<SVGProps<SVGSVGElement>> = ({ width = "24", height = "24", ...props }) => (
   <svg
     aria-hidden="true"
     fill="none"

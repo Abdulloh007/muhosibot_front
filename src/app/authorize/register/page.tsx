@@ -1,10 +1,10 @@
 'use client'
 
 import Image from 'next/image'
-import React from 'react'
+import React, { useState } from 'react'
 import { ExpandMore } from '@mui/icons-material';
 import { Select, SelectItem } from "@nextui-org/react";
-import BtnPurple from '@/Components/core/AllComponent/buttonPurple';
+// import BtnPurple from '@/Components/core/AllComponent/buttonPurple';
 import { formInput } from './data'
 
 
@@ -50,11 +50,11 @@ export default function Home2() {
                                                 selectorIcon={<ExpandMore />}
 
                                             >
-                                                {o.typeOfBisness?.map((item) => (
+                                                {o.typeOfBisness ? o.typeOfBisness.map((item) => (
                                                     <SelectItem key={item.txt} value={item.txt}>
                                                         {item.txt}
                                                     </SelectItem>
-                                                ))}
+                                                )) : (<></>)}
                                             </Select>
                                         </>
                                     ) : (
@@ -62,7 +62,7 @@ export default function Home2() {
                                     )}
                                 </React.Fragment>
                             ))}
-                            <BtnPurple text='Зарегистрироваться' />
+                            <button>Зарегистрироваться</button>
                         </div>
 
                     </form>
