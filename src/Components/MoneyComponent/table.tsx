@@ -1,7 +1,7 @@
 import { Table, TableHeader, TableColumn, TableBody, TableRow, TableCell, getKeyValue, useDisclosure } from "@nextui-org/react";
 import { columns, users } from "./data";
-import ArrowIcon from "@/Components/core/Icons/ArrowIcon"
-import MyModalApp from '@/Components/core/addMoneyCom/modal'
+import ArrowIcon from "@/components/core/Icons/ArrowIcon"
+import MyModalApp from '@/components/core/addMoneyCom/modal'
 
 
 interface AppProps {

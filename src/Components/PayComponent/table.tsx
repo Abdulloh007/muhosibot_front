@@ -3,7 +3,7 @@ import { columns, users, btnClass } from "./data";
 import { Select, SelectItem } from "@nextui-org/react";
 import { ExpandMore } from '@mui/icons-material';
 import { useState } from "react";
-import PayModalApp from '@/Components/core/addPayCom/modal'
+import PayModalApp from '@/components/core/addPayCom/modal'
 
 
 

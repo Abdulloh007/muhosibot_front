@@ -3,9 +3,9 @@ import React, { useState } from "react";
 import App from "./table";
 import { tabs, users } from "./data";
 import { Button, Input, useDisclosure } from '@nextui-org/react';
-import ExportComponent from '@/Components/core/AllComponent/ExportComponent'
-import PlusIcon from "@/Components/core/Icons/PlusIcon";
-import MyModalApp from '@/Components/core/addMoneyCom/modal'
+import ExportComponent from '@/components/core/AllComponent/ExportComponent'
+import PlusIcon from "@/components/core/Icons/PlusIcon";
+import MyModalApp from '@/components/core/addMoneyCom/modal'
 
 
 

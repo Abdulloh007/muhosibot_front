@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import TypeOfBusiness from '@/Components/typeOfBisness'
+import TypeOfBusiness from '@/components/typeOfBisness'
 
 export default function Home1() {
   return (

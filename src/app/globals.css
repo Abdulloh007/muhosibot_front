@@ -1,7 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@import "@/Components/tableComponent/test.css";
+@import "@/components/tableComponent/test.css";
 
 .header {
   padding: 20px 24px 20px 24px;

@@ -11,7 +11,7 @@ const TypeOfBusiness: React.FC<TypeOfBusinessProps> = ({ name1, name2, name3}) =
   return (
     <>
       <Link
-        href={` ${name3 ? `/authorize/tax` : `/authorize/register`}`}
+        href={` ${name3 ? `/auth/tax` : `/auth/register`}`}
         className='underline'
         passHref
       >
@@ -20,7 +20,7 @@ const TypeOfBusiness: React.FC<TypeOfBusinessProps> = ({ name1, name2, name3}) =
       <span className='text-[#CCCCCC] text-[60px] mt-3 mx-5'>|</span>
       {name3 ? (
         <Link
-          href="/authorize/register"
+          href="/auth/register"
           passHref
         >
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
@@ -30,7 +30,7 @@ const TypeOfBusiness: React.FC<TypeOfBusinessProps> = ({ name1, name2, name3}) =
         </Link>
       ) : (
         <Link
-          href="/authorize/tax"
+          href="/auth/tax"
           className='underline'
           passHref
         >

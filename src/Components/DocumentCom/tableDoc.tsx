@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import DocumentIcon from "@/Components/core/Icons/FolderIcon";
+import DocumentIcon from "@/components/core/Icons/FolderIcon";
 import { Checkbox } from "@nextui-org/react";
 
 interface TypePropsDoc {

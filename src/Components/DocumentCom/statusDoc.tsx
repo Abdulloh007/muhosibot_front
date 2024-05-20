@@ -2,7 +2,7 @@ import React from 'react';
 import { Select, SelectItem } from "@nextui-org/react";
 import { ExpandMore } from '@mui/icons-material';
 import { btnClass } from '../core/addExployerCom/data';
-import CheckMarkICon from '@/Components/core/Icons/CheckMarkIcon';
+import CheckMarkICon from '@/components/core/Icons/CheckMarkIcon';
 // import {valueChangeGrey, valueChangeYellow} from './data'
 
 interface StatusPropsDoc {

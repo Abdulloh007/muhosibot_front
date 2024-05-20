@@ -4,7 +4,7 @@ import Image from 'next/image'
 import React, { useState } from 'react'
 import { ExpandMore } from '@mui/icons-material';
 import { Select, SelectItem } from "@nextui-org/react";
-// import BtnPurple from '@/Components/core/AllComponent/buttonPurple';
+// import BtnPurple from '@/components/core/AllComponent/buttonPurple';
 import { formInput } from './data'
 
 

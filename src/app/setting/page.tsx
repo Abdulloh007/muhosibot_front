@@ -1,8 +1,8 @@
 'use client'
 import React from 'react';
-import Header from '@/Components/header';
-import TabsCom from '@/Components/SettingCom/tabs';
-import Notify from '@/Components/core/AllComponent/notify'
+import Header from '@/components/header';
+import TabsCom from '@/components/SettingCom/tabs';
+import Notify from '@/components/core/AllComponent/notify'
 import NextTopLoader from 'nextjs-toploader';
 
 const Setting = () => {

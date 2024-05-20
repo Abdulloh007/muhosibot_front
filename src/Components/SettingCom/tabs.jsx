@@ -1,6 +1,6 @@
 import React from "react";
 import { Tabs, Tab, RadioGroup, Radio } from "@nextui-org/react";
-import PenIcon from "@/Components/core/Icons/PenIcon";
+import PenIcon from "@/components/core/Icons/PenIcon";
 
 const TabsSelect = {
   cursor: ["bg-purpleLg", "w-[90%]"],

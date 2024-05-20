@@ -1,9 +1,9 @@
 'use client'
 import React from 'react';
-import Header from '@/Components/header';
-import Tabs from '@/Components/PayComponent/tabs';
-import Notify from '@/Components/core/AllComponent/notify'
-import FooterPaying from '@/Components/PayComponent/footerPaying'
+import Header from '@/components/header';
+import Tabs from '@/components/PayComponent/tabs';
+import Notify from '@/components/core/AllComponent/notify'
+import FooterPaying from '@/components/PayComponent/footerPaying'
 
 
 const Paying = () => {

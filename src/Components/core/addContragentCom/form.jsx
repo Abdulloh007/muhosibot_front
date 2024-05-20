@@ -2,9 +2,9 @@
 import React, { useState } from "react";
 import { Checkbox, Button } from "@nextui-org/react";
 import { Select, SelectItem } from "@nextui-org/react";
-import PlusIcon from "@/Components/core/Icons/PlusIcon";
-import MinusIcon from "@/Components/core/Icons/MinusIcon";
-import ChevronLeftIcon from "@/Components/core/Icons/ChevronLeft";
+import PlusIcon from "@/components/core/Icons/PlusIcon";
+import MinusIcon from "@/components/core/Icons/MinusIcon";
+import ChevronLeftIcon from "@/components/core/Icons/ChevronLeft";
 import Link from "next/link";
 import {
   defaultStyleInput,

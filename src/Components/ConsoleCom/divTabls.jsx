@@ -1,9 +1,9 @@
 "use client";
 import React from "react";
 import Link from "next/link";
-import FolderIconYellow from "@/Components/core/Icons/FolderIconYellow";
-import FolderIconGreen from "@/Components/core/Icons/FolderIconGreen";
-import FolderIconPurple from "@/Components/core/Icons/FolderIconPurple";
+import FolderIconYellow from "@/components/core/Icons/FolderIconYellow";
+import FolderIconGreen from "@/components/core/Icons/FolderIconGreen";
+import FolderIconPurple from "@/components/core/Icons/FolderIconPurple";
 
 const DivTables = () => {
   return (

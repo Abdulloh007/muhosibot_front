@@ -1,6 +1,6 @@
 import React from "react";
 import { Button, Input } from "@nextui-org/react";
-import PlusIcon from "@/Components/AllComponent/PlusIcon";
+import PlusIcon from "@/components/AllComponent/PlusIcon";
 import Link from "next/link";
 
 const SearchComponent = ({ link }) => {

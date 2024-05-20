@@ -1,9 +1,9 @@
 import { Table, TableHeader, TableColumn, TableBody, TableRow, TableCell, getKeyValue } from "@nextui-org/react";
 import { columns, users } from "./data";
-import ArrowIcon from "@/Components/core/Icons/ArrowIcon"
-import TableDoc from "@/Components/DocumentCom/tableDoc"
-import StatusDoc from '@/Components/DocumentCom/statusDoc'
-import SummaDoc from '@/Components/DocumentCom/summaDoc'
+import ArrowIcon from "@/components/core/Icons/ArrowIcon"
+import TableDoc from "@/components/DocumentCom/tableDoc"
+import StatusDoc from '@/components/DocumentCom/statusDoc'
+import SummaDoc from '@/components/DocumentCom/summaDoc'
 
 
 interface AppProps {

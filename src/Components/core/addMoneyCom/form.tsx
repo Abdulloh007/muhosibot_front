@@ -2,7 +2,7 @@
 import React from 'react'
 import { Button } from "@nextui-org/react";
 import { Select, SelectItem } from "@nextui-org/react";
-import ChevronLeftIcon from "@/Components/core/Icons/ChevronLeft";
+import ChevronLeftIcon from "@/components/core/Icons/ChevronLeft";
 import Link from "next/link";
 import {
     defaultStyleInput,

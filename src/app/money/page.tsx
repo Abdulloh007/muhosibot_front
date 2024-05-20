@@ -1,9 +1,9 @@
 'use client'
 import React from 'react';
-import Header from '@/Components/header';
-import Tabs from '@/Components/MoneyComponent/tabs';
-import Notify from '@/Components/core/AllComponent/notify'
-import FooterMoney from '@/Components/MoneyComponent/footerMoney'
+import Header from '@/components/header';
+import Tabs from '@/components/MoneyComponent/tabs';
+import Notify from '@/components/core/AllComponent/notify'
+import FooterMoney from '@/components/MoneyComponent/footerMoney'
 import NextTopLoader from 'nextjs-toploader';
 
 const Money = () => {

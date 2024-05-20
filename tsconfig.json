@@ -21,6 +21,6 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/Components/tableComponent/test.tsx", "src/Components/AllComponent/PlusIcon.tsx", "src/Components/ConsoleCom/table.tsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/components/tableComponent/test.tsx", "src/components/AllComponent/PlusIcon.tsx", "src/components/ConsoleCom/table.tsx"],
   "exclude": ["node_modules"]
 }

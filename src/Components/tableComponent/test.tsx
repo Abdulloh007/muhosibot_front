@@ -2,9 +2,9 @@
 import React, { useState } from "react";
 import App from "./table";
 import { users } from "./data";
-import ExportComponent from '@/Components/core/AllComponent/ExportComponent'
+import ExportComponent from '@/components/core/AllComponent/ExportComponent'
 import { Button, Input } from '@nextui-org/react';
-import PlusIcon from "@/Components/core/Icons/PlusIcon";
+import PlusIcon from "@/components/core/Icons/PlusIcon";
 import { useRouter } from "next/navigation";
 
 const SearchInput = {

@@ -1,7 +1,7 @@
 import React from 'react';
-import Header from '@/Components/header';
-import Notify from '@/Components/core/AllComponent/notify'
-import Form from '@/Components/core/addExployerCom/form';
+import Header from '@/components/header';
+import Notify from '@/components/core/AllComponent/notify'
+import Form from '@/components/core/addExployerCom/form';
 
 const Home = () => {
   return (

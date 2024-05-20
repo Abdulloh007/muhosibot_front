@@ -1,8 +1,8 @@
 'use client'
 import React from 'react';
-import Header from '@/Components/header';
-import Tabs from '@/Components/tableComponent/test';
-import Notify from '@/Components/core/AllComponent/notify'
+import Header from '@/components/header';
+import Tabs from '@/components/tableComponent/test';
+import Notify from '@/components/core/AllComponent/notify'
 
 
 const Explorer = () => {
