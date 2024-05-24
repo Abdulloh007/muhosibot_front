@@ -7,6 +7,7 @@ import { Button } from '@nextui-org/react';
 
 import { TabClassActive, TabClassDefault } from './data'
 import DivTables from './divTabls'
+import { useAppDispatch, useAppSelector } from "@/lib/hooks";
 
 
 const SearchInput = {
@@ -32,12 +33,18 @@ const Tabs: React.FC = () => {
 
   const users1 = filterItems()
 
+  const dispatch = useAppDispatch();
+  const name = useAppSelector((state) => state.userSlice.name)
+
+  function test() {
+    dispatch
+  }
 
   return (
     <div className="container">
       <div className='flex mb-[26px] items-center justify-between'>
         <div className='flex flex-col'>
-          <h1 className='text-[36px] font-bold'>Консоль</h1>
+          <h1 className='text-[36px] font-bold'>Консоль {name}</h1>
           <span className='text-linkSm font-semibold text-[16px]'>Панель управления</span>
         </div>
       </div>
