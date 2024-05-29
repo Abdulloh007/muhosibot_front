@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">muhosibot</string>
+    <string name="title_activity_main">muhosibot</string>
+    <string name="package_name">tj.muhosibot.my</string>
+    <string name="custom_url_scheme">tj.muhosibot.my</string>
+</resources>
