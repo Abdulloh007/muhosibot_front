@@ -12,6 +12,8 @@ export default function Home2() {
     const [isCollapse, setCollapse] = useState<boolean>(false);
     const typeOfBisness = 'ООО'
     const systemTax = 'УСН'
+    const [fillingStep, setFillingStep] = useState(0)
+    // const 
 
     const handleSubmit = () => {
         console.log('Зарегистрировался')
@@ -48,7 +50,6 @@ export default function Home2() {
                                                 disableSelectorIconRotation
                                                 classNames={btnClass}
                                                 selectorIcon={<ExpandMore />}
-
                                             >
                                                 {o.typeOfBisness ? o.typeOfBisness.map((item) => (
                                                     <SelectItem key={item.txt} value={item.txt}>

@@ -4,19 +4,26 @@ import { UserMain } from '@/interfaces/user'
 
 
 const initialState: UserMain = {
-    name: 'test'
+    name: '',
+    token: ''
 }
 
 export const userSlice = createSlice({
     name: 'user',
     initialState,
     reducers: {
-        test: (state, action) => {
-            state.name = action.payload
-        }
+        setUser: (state, action) => {
+            state.name = action.payload.name
+        },
+        checkToken: (state) => {
+            state.token = localStorage.getItem(btoa('token'))
+        },
+        logout: (state) => {
+            localStorage.clear();
+        },
     }
 })
 
-export const { test } = userSlice.actions
+export const { setUser, checkToken, logout } = userSlice.actions
 
 export default userSlice.reducer

@@ -1,3 +1,4 @@
 export interface UserMain {
-    name: string
+    name: string;
+    token: string | null;
 }

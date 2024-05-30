@@ -19,7 +19,7 @@ export default function Home1() {
           </div>
           <div className='flex flex-col text-center mt-[150px]'>
             <p className='text-lg text-[#757575]'>Уже регистрировались?</p>
-            <a className='text-lg text-[#4D89FF]' href="/">Войдите в аккаунт</a>
+            <a className='text-lg text-[#4D89FF]' href="/auth">Войдите в аккаунт</a>
           </div>
         </div>
       </div>
