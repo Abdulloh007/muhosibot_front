@@ -13,7 +13,14 @@ export default function Home2() {
     const typeOfBisness = 'ООО'
     const systemTax = 'УСН'
     const [fillingStep, setFillingStep] = useState(0)
-    // const 
+    const [typeOfBusiness, setTypeOfBusiness] = useState('')
+    const [taxSystem, setTaxSystem] = useState('')
+    const [username, setUsername] = useState('')
+    const [email, setEmail] = useState('')
+    const [phone, setPhone] = useState('')
+    const [password, setPassword] = useState('')
+    const [passwordConfirmation, setPasswordConfirmation] = useState('')
+
 
     const handleSubmit = () => {
         console.log('Зарегистрировался')

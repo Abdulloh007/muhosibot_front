@@ -4,8 +4,11 @@ import { UserMain } from '@/interfaces/user'
 
 
 const initialState: UserMain = {
-    name: '',
-    token: ''
+    username: '',
+    token: '',
+    email: '',
+    phone: '',
+    status: ''
 }
 
 export const userSlice = createSlice({
@@ -13,7 +16,7 @@ export const userSlice = createSlice({
     initialState,
     reducers: {
         setUser: (state, action) => {
-            state.name = action.payload.name
+            state.username = action.payload.username
         },
         checkToken: (state) => {
             state.token = localStorage.getItem(btoa('token'))

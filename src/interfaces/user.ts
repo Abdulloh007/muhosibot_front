@@ -1,4 +1,7 @@
 export interface UserMain {
-    name: string;
+    username: string;
+    email: string;
+    phone: string;
+    status: string;
     token: string | null;
 }
