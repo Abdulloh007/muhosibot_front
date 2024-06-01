@@ -6,13 +6,14 @@ import { ExpandMore } from '@mui/icons-material';
 import { Select, SelectItem } from "@nextui-org/react";
 // import BtnPurple from '@/components/core/AllComponent/buttonPurple';
 import { formInput } from './data'
+import TypeOfBusiness from '@/components/typeOfBisness';
 
 
 export default function Home2() {
     const [isCollapse, setCollapse] = useState<boolean>(false);
     const typeOfBisness = 'ООО'
     const systemTax = 'УСН'
-    const [fillingStep, setFillingStep] = useState(0)
+    const [fillingStep, setFillingStep] = useState(1)
     const [typeOfBusiness, setTypeOfBusiness] = useState('')
     const [taxSystem, setTaxSystem] = useState('')
     const [username, setUsername] = useState('')
@@ -32,8 +33,8 @@ export default function Home2() {
 
 
     return (
-        <main className='w-full flex justify-center items-center h-screen ml-10'>
-            <div className="w-[600px] h-[750px] shadow-2xl px-[113px] flex flex-col items-center">
+        <main className='w-full flex justify-center items-center min-h-screen'>
+            <div className="w-[600px] min-h-[750px] shadow-2xl px-[113px] flex flex-col items-center">
                 <Image className='mb-[17px] mt-[-85px]' src='/iconMenu/logoA.svg' width={173} height={120} alt="LogoAuth" />
                 <div className='flex flex-col'>
                     <div className='text-center font-montserrat'>
@@ -41,10 +42,32 @@ export default function Home2() {
                         <p className='text-[22px] font-bold text-purpleMid'>Осон, Кулай, Тез</p>
                     </div>
                     <div className='text-center mt-[31px]'>
-                        <p className='text-[18px] mb-[10px]'>Выберите вид деятельности <span className='text-purpleMid underline pl-[10px]'>{typeOfBisness}</span></p>
-                        <p className='text-[18px]'>Система налогообложения<span className='text-purpleMid underline pl-[10px]'>{systemTax}</span></p>
+                        <p className={fillingStep == 1 ? 'text-[24px]' : 'text-[18px] mb-[10px]'}>Выберите вид деятельности
+                            {fillingStep == 1
+                                ? (<></>)
+                                : (<span className='text-purpleMid underline pl-[10px]'>{typeOfBisness}</span>)
+                            }
+                        </p>
+                        {fillingStep < 2
+                            ? (<></>)
+                            : (<p className={fillingStep < 3 ? 'text-[24px]' : 'text-[18px] mb-[10px]'}>Система налогообложения
+                                {fillingStep < 3
+                                    ? (<></>)
+                                    : (<span className='text-purpleMid underline pl-[10px]'>{systemTax}</span>)
+                                }
+                            </p>)
+
+                        }
+
+                        <div className={(fillingStep == 1) ? 'flex text-purpleLg justify-between text-[72px] mt-[25px] transition' : 'flex text-purpleLg justify-between text-[72px] mt-[25px] transition pointer-events-none opacity-0 z-[-1] h-0'}>
+                            <TypeOfBusiness name1='ИП' name2='ООО' />
+                        </div>
+
+                        <div className={(fillingStep == 2) ? 'flex text-purpleLg justify-between text-[72px] mt-[25px] transition' : 'flex text-purpleLg justify-between text-[72px] mt-[25px] transition pointer-events-none opacity-0 z-[-1] h-0'}>
+                            <TypeOfBusiness name1='УСН' name2='УСН' name3='минус расходы' />
+                        </div>
                     </div>
-                    <form onSubmit={handleSubmit} className='w-[374px] mt-[21px]'>
+                    <form onSubmit={handleSubmit} className={(fillingStep == 3) ? 'w-[374px] mt-[21px] transition' : 'w-[374px] mt-[21px] transition pointer-events-none opacity-0 z-[-1] h-0'}>
                         <div className='flex flex-col'>
                             {formInput.map((o) => (
                                 <React.Fragment key={o.id}>
@@ -70,7 +93,7 @@ export default function Home2() {
                                     )}
                                 </React.Fragment>
                             ))}
-                            <button>Зарегистрироваться</button>
+                            <button className='bg-purple-600 rounded text-white p-1 mt-[20px]'>Зарегистрироваться</button>
                         </div>
 
                     </form>
