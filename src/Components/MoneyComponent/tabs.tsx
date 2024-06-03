@@ -88,13 +88,13 @@ const Tabs: React.FC = () => {
                 className={toggleState === 'Поступления' ? "tabs active-tabs" : "tabs"}
                 onClick={() => toggleTab(tabs.secondTab)}
               >
-                Товары
+                Поступления
               </button>
               <button
                 className={toggleState === 'Списания' ? "tabs active-tabs" : "tabs"}
                 onClick={() => toggleTab(tabs.thirdTab)}
               >
-                Услуги
+                Списания
               </button>
             </div>
             <ExportComponent users1={users1} collapse={true} />

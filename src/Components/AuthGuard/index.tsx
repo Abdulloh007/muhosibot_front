@@ -14,7 +14,7 @@ function AuthGuard({children}: Props) {
     const dispatch = useAppDispatch();
     const { push } = useRouter();
 
-    const token = useAppSelector(state => state.profile.name);
+    const token = useAppSelector(state => state.profile.token);
     const [isLoading, setIsLoading] = useState(true)
 
     useEffect(() => {

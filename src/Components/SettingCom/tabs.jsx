@@ -70,7 +70,7 @@ const TabsCom = () => {
             <RadioGroup className="mt-[20px]">
               <Radio value="toPassword">По паролю</Radio>
               <Radio value="PushAndPw" className="flex items-start">
-                По паролю и push-уведомлению от мобильного приложения Эльбы
+                По паролю и push-уведомлению от мобильного приложения
                 <br />
                 <a
                   href="https://nextui.org/docs/components/radio-group"
