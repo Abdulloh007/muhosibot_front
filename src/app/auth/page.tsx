@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import TypeOfBusiness from '@/components/typeOfBisness'
 
-export default function Home1() {
+export default function Auth() {
   return (
     <main className='w-full flex justify-center items-center h-screen'>
       <div className="w-[600px] h-[600px]  shadow-2xl px-[127px] flex flex-col items-center">
