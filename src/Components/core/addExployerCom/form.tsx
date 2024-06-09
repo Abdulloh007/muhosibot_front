@@ -21,7 +21,7 @@ const handleSubmit = () => {
 
 const Form = () => {
     return (
-        <div className='mt-10 h-[95%]'>
+        <div className='container'>
             <div className="container-form h-full">
                 <div className='flex items-center mb-[38px]'>
                     <Link href='/cooperator'>

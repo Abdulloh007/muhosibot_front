@@ -1,14 +1,14 @@
 import React from 'react';
-import Header from '@/components/header';
-import Notify from '@/components/core/AllComponent/notify'
+import Sidebar from '@/components/sidebar';
+import Topbar from '@/components/core/AllComponent/topbar'
 import Form from '@/components/core/addContragentCom/form';
 
 const Home = () => {
   return (
     <div className="flex">
-      <Header />
-      <main className="flex-1 pt-4 pb-12 px-16 ml-24 z-0">
-        <Notify />
+      <Sidebar />
+      <main className="w-full h-full pl-[100px]">
+        <Topbar />
         <Form />
       </main>
     </div>

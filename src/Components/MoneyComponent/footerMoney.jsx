@@ -2,7 +2,7 @@ import React from "react";
 
 const FooterMoney = () => {
   return (
-    <div className="w-[90%] ml-16 rounded-t-xl p-[15px] bg-[#F1F1F1]">
+    <div className="fixed bottom-0 left-20 w-[80%] ml-16 rounded-t-xl p-[15px] bg-[#F1F1F1]">
       <div className="flex justify-between items-center">
         <div className="flex flex-col">
           <h1>

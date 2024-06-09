@@ -1,17 +1,17 @@
 'use client'
 import React from 'react';
-import Header from '@/components/header';
+import Sidebar from '@/components/sidebar';
 import Tabs from '@/components/ContragentComponent/tabs';
-import Notify from '@/components/core/AllComponent/notify'
+import Topbar from '@/components/core/AllComponent/topbar'
 
 const Contragent = () => {
   return (
     <div className='flex'>
       <div className='h-screen flex'>
-        <Header />
+        <Sidebar />
       </div>
-      <main className='ml-40'>
-        <Notify />
+      <main className='w-full h-full pl-[100px]'>
+        <Topbar />
         <Tabs />
       </main>
     </div>

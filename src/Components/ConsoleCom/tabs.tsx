@@ -34,7 +34,7 @@ const Tabs: React.FC = () => {
   const users1 = filterItems()
 
   const dispatch = useAppDispatch();
-  const name = useAppSelector((state) => state.userSlice.name)
+  const name = useAppSelector((state) => state.profile.name)
 
   function test() {
     dispatch
@@ -49,7 +49,7 @@ const Tabs: React.FC = () => {
         </div>
       </div>
       <div>
-        <div className='w-full rounded-md bg-white pt-3 px-[20px] pb-4'>
+        {/* <div className='w-full rounded-md bg-white pt-3 px-[20px] pb-4'>
           <div className="flex justify-between">
             <div className="bloc-tabs">
               <Button
@@ -101,7 +101,7 @@ const Tabs: React.FC = () => {
             </div>
 
           </div>
-        </div>
+        </div> */}
         <DivTables />
       </div>
     </div >

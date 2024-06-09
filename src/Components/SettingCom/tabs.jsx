@@ -16,7 +16,7 @@ const TabsCom = () => {
           Настройки &gt; Аккаунт и уведомления
         </span>
       </div>
-      <div className="w-[1200px]  rounded-xl shadow-lg h-[700px] bg-white">
+      <div className="w-full  rounded-xl shadow-lg h-[700px] bg-white">
         <div className="pl-[20px] mt-[26px]">
           <div className="pt-[20px] w-full border-b-2">
             <Tabs

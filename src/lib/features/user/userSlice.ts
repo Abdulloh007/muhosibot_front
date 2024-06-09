@@ -8,7 +8,17 @@ const initialState: UserMain = {
     token: '',
     email: '',
     phone: '',
-    status: ''
+    status: '',
+    id: 0,
+    avatar: null,
+    name: '',
+    surname: '',
+    patronimic: '',
+    age: null,
+    birth: null,
+    gender: null,
+    code_phrase: null,
+    devices: null
 }
 
 export const userSlice = createSlice({
@@ -17,6 +27,19 @@ export const userSlice = createSlice({
     reducers: {
         setUser: (state, action) => {
             state.username = action.payload.username
+            state.surname = action.payload.surname
+            state.name = action.payload.name
+            state.patronimic = action.payload.patronimic
+            state.age = action.payload.age
+            state.birth = action.payload.birth
+            state.id = action.payload.id
+            state.avatar = action.payload.avatar
+            state.code_phrase = action.payload.code_phrase
+            state.gender = action.payload.gender
+            state.devices = action.payload.devices
+            state.status = action.payload.status
+            state.phone = action.payload.phone
+            state.email = action.payload.email
         },
         checkToken: (state) => {
             state.token = localStorage.getItem(btoa('token'))

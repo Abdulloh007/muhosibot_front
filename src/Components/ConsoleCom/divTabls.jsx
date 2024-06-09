@@ -4,8 +4,12 @@ import Link from "next/link";
 import FolderIconYellow from "@/components/core/Icons/FolderIconYellow";
 import FolderIconGreen from "@/components/core/Icons/FolderIconGreen";
 import FolderIconPurple from "@/components/core/Icons/FolderIconPurple";
+import { Accordion, AccordionItem } from "@nextui-org/react";
 
 const DivTables = () => {
+  const defaultContent =
+    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.";
+
   return (
     <div className="flex items-center">
       <div className="flex flex-col w-[60%]">
@@ -68,14 +72,31 @@ const DivTables = () => {
               <span className="text-[#141414]">- 8 на 5 600,00 смн</span>
             </p>
           </div>
-          <Link href="/money" className="text-linkSm ">
-            Все деньги
+          <Link href="/document" className="text-linkSm ">
+            Все документы
           </Link>
         </div>
       </div>
       <div className="flex flex-col ml-[30px] w-[40%] h-[490px]">
         <div className="rounded-md pt-[15px] pl-[10px] h-full bg-white shadow-md">
           <h1 className="font-medium text-[24px]">События дня</h1>
+          <Accordion>
+            <AccordionItem key="1" aria-label="Accordion 1" title="Accordion 1">
+              {defaultContent}
+            </AccordionItem>
+            <AccordionItem key="2" aria-label="Accordion 2" title="Accordion 2">
+              {defaultContent}
+            </AccordionItem>
+            <AccordionItem key="3" aria-label="Accordion 3" title="Accordion 3">
+              {defaultContent}
+            </AccordionItem>
+            <AccordionItem key="4" aria-label="Accordion 4" title="Accordion 4">
+              {defaultContent}
+            </AccordionItem>
+            <AccordionItem key="5" aria-label="Accordion 5" title="Accordion 5">
+              {defaultContent}
+            </AccordionItem>
+          </Accordion>
         </div>
       </div>
     </div>

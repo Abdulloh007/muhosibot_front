@@ -72,7 +72,7 @@ const Tabs: React.FC = () => {
         </div>
       </div>
       <div>
-        <div className='w-[1200px]'>
+        <div className='w-full'>
           <div className="flex justify-between">
             <div className="bloc-tabs">
               <button

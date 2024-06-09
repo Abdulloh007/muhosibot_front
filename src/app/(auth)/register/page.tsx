@@ -4,9 +4,8 @@ import Image from 'next/image'
 import React, { useEffect, useState } from 'react'
 import { ExpandMore } from '@mui/icons-material';
 import { Select, SelectItem } from "@nextui-org/react";
-// import BtnPurple from '@/components/core/AllComponent/buttonPurple';
-import TypeOfBusiness from '@/components/typeOfBisness';
 import axios from 'axios';
+import { useRouter } from 'next/navigation';
 
 
 export default function Registration() {
@@ -25,7 +24,7 @@ export default function Registration() {
     const [phone, setPhone] = useState('')
     const [password, setPassword] = useState('')
     const [passwordConfirmation, setPasswordConfirmation] = useState('')
-
+    const router = useRouter()
 
     useEffect(() => {
         axios.get('/api/activities').then((res: any) => {
@@ -55,15 +54,14 @@ export default function Registration() {
             patronimic: name.split(' ')[2] || '',
             email,
             phone,
-            code_phrase: JSON.stringify([]),
             device: JSON.stringify({
                 name: navigator?.appName,
                 ip: ipAddress
             }),
-            status: 2,
             password
         }).then((res: any) => {
             localStorage.setItem(btoa('token'), res.data.token)
+            router.push('/dashboard')
         })
     }
 
@@ -124,6 +122,7 @@ export default function Registration() {
                                 className='border-b-2 h-[30px] bg-[#F1F1F1] mt-[20px] pl-[5px] text-[14px] hover:border-b-2  focus:outline-none' 
                             />
                             <Select
+                                aria-label="hidden"
                                 placeholder="Выберите тип деятельности"
                                 labelPlacement="outside"
                                 className="mt-[20px] pl-[5px] bg-[#F1F1F1] border-b-2 text-[14px]"
@@ -176,7 +175,7 @@ export default function Registration() {
 
                     <div className='flex flex-col text-center mt-[60px]'>
                         <p className='text-lg text-[#757575]'>Уже регистрировались?</p>
-                        <a className='text-lg text-[#4D89FF]' href="/">Войдите в аккаунт</a>
+                        <a className='text-lg text-[#4D89FF]' href="/auth">Войдите в аккаунт</a>
                     </div>
                 </div>
             </div>

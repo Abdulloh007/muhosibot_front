@@ -1,13 +1,14 @@
 import React from 'react';
 import Sidebar from '@/components/sidebar';
 import Topbar from '@/components/core/AllComponent/topbar'
-import Form from '@/components/core/addDocumentCom/form';
+import Form from '../_components/form';
+
 
 const Home = () => {
   return (
     <div className="flex">
       <Sidebar />
-      <main className="flex-1 pt-4 pb-12 px-16 ml-24 z-0">
+      <main className="w-full h-full pl-[100px]">
         <Topbar />
         <Form />
       </main>

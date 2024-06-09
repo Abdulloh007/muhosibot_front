@@ -76,7 +76,7 @@ const Tabs: React.FC = () => {
         </div>
       </div>
       <div>
-        <div className='w-[1200px]'>
+        <div className='w-full'>
           <div className="flex justify-between">
             <div className="bloc-tabs">
               <button
@@ -91,14 +91,14 @@ const Tabs: React.FC = () => {
                 className={toggleState === 'Исходящие' ? "tabs active-tabs" : "tabs"}
                 onClick={() => toggleTab(tabs.secondTab)}
               >
-                Товары
+                Исходящие
               </button>
               <button
                 aria-label="TabButton"
                 className={toggleState === 'Входящие' ? "tabs active-tabs" : "tabs"}
                 onClick={() => toggleTab(tabs.thirdTab)}
               >
-                Услуги
+                Входящие
               </button>
             </div>
             <ExportComponent users1={users1} collapse={true} />

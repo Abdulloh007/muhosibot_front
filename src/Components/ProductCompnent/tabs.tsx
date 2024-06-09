@@ -5,6 +5,7 @@ import { tabs, users } from "./data";
 import { Button, Input } from '@nextui-org/react';
 import ExportComponent from '@/components/core/AllComponent/ExportComponent'
 import PlusIcon from '@/components/core/Icons/PlusIcon';
+import Link from "next/link";
 
 
 
@@ -59,18 +60,22 @@ const Tabs: React.FC = () => {
             />
           </div>
           <div>
-            <Button
-              className='bg-purpleLg text-white ml-[15px] border-none'
-              startContent={<PlusIcon />}
-              size='sm'
-            >
-              Добавить
-            </Button>
+            <Link href="/product/add" className="ml-[15px]">
+
+              <Button
+                
+                className='bg-purpleLg text-white  border-none'
+                startContent={<PlusIcon />}
+                size='sm'
+              >
+                Добавить
+              </Button>
+            </Link>
           </div>
         </div>
       </div>
       <div>
-        <div className='w-[1200px]'>
+        <div className='w-full'>
           <div className="flex justify-between">
             <div className="bloc-tabs">
               <button
