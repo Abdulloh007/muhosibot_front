@@ -93,7 +93,6 @@ const Sidebar = () => {
 
   return (
     <header className='fixed h-screen z-10 opacity-100'>
-      <section>
         <div onMouseEnter={() => setHover(true)} onMouseLeave={() => {setHover(false); setCollapse(false)}} className={`header h-[100vh] overflow-hidden transition-all duration-500 flex bg-[#FFF] justify-between flex-col  shadow-xl ${isOpen ? `w-[300px]` : `w-[104px] `}`}>
           <div className="flex flex-col">
             <div className='flex mb-4'>
@@ -154,18 +153,18 @@ const Sidebar = () => {
             </div>
           </div>
         </div>
-      </section>
-      {isOpen && <NextTopLoader
-        color="#A774FF"
-        initialPosition={0.08}
-        crawlSpeed={100} // Изменил значение на 100
-        height={3}
-        crawl={true}
-        showSpinner={true}
-        easing="ease"
-        speed={200}
-        shadow="0 0 10px #2299DD,0 0 5px #2299DD"
-      />}
+        
+        <NextTopLoader
+          color="#A774FF"
+          initialPosition={0.08}
+          crawlSpeed={100} // Изменил значение на 100
+          height={3}
+          crawl={true}
+          showSpinner={true}
+          easing="ease"
+          speed={200}
+          shadow="0 0 10px #2299DD,0 0 5px #2299DD"
+        />
     </header>
   )
 }

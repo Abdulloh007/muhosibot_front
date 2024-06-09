@@ -7,15 +7,13 @@ import Topbar from '@/components/core/AllComponent/topbar'
 
 const Explorer = () => {
   return (
-    <div className='flex'>
-      <div className='h-screen flex'>
-        <Sidebar/>
-      </div>
+    <>
+      <Sidebar />
       <main className='w-full h-full pl-[100px]'>
-        <Topbar/>
-        <Tabs/>
+        <Topbar />
+        <Tabs />
       </main>
-    </div>
+    </>
   );
 };
 

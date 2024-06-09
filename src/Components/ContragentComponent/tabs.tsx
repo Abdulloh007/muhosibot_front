@@ -6,6 +6,7 @@ import { Button, Input } from '@nextui-org/react';
 import ExportComponent from '@/components/core/AllComponent/ExportComponent'
 import PlusIcon from "@/components/core/Icons/PlusIcon";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 
 
@@ -19,10 +20,6 @@ const Tabs: React.FC = () => {
   const [toggleState, setToggleState] = useState<string>('Все Контрагенты');
   const [isSearchValue, setSearchValue] = useState<string>('');
   const router = useRouter()
-
-  const handleButtonClick = () => {
-    router.push('contragent/add')
-  }
 
   const toggleTab = (index: string) => {
     setToggleState(index);
@@ -65,14 +62,15 @@ const Tabs: React.FC = () => {
             />
           </div>
           <div>
-            <Button
-              className="bg-purpleLg text-white ml-[15px] border-none"
-              startContent={<PlusIcon />}
-              size="sm"
-              onClick={handleButtonClick}
-            >
-              Добавить
-            </Button>
+            <Link href='/contragent/add' className='ml-[15px]'>
+              <Button
+                className="bg-purpleLg text-white  border-none"
+                startContent={<PlusIcon />}
+                size="sm"
+              >
+                Добавить
+              </Button>
+            </Link>
           </div>
         </div>
       </div>

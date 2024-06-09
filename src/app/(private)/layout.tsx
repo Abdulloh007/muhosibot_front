@@ -14,9 +14,7 @@ export default function RootLayout({
 }>) {
   return (
     <>
-      <main>
         <AuthGuard>{children}</AuthGuard>
-      </main>
     </>
   );
 }

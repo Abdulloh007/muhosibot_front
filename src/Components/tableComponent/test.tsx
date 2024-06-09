@@ -6,6 +6,7 @@ import ExportComponent from '@/components/core/AllComponent/ExportComponent'
 import { Button, Input } from '@nextui-org/react';
 import PlusIcon from "@/components/core/Icons/PlusIcon";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 const SearchInput = {
   inputWrapper: ["border-none", "bg-[#FFFFFF]", "py-0", "h-[33px]", "w-[250px]"],
@@ -15,10 +16,6 @@ const Tabs: React.FC = () => {
   const [toggleState, setToggleState] = useState<string>('All');
   const [isSearchValue, setSearchValue] = useState<string>('');
   const router = useRouter();
-
-  const handleButtonClick = () => {
-    router.push('cooperator/add');
-  };
 
   const toggleTab = (index: string) => {
     setToggleState(index);
@@ -60,14 +57,15 @@ const Tabs: React.FC = () => {
             />
           </div>
           <div>
-            <Button
-              className="bg-purpleLg text-white ml-[15px] border-none"
-              startContent={<PlusIcon />}
-              size="sm"
-              onClick={handleButtonClick}
-            >
-              Добавить
-            </Button>
+            <Link href="cooperator/add" className="ml-[15px]">
+              <Button
+                className="bg-purpleLg text-white border-none"
+                startContent={<PlusIcon />}
+                size="sm"
+              >
+                Добавить
+              </Button>
+            </Link>
           </div>
         </div>
       </div>

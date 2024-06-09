@@ -19,10 +19,6 @@ const Tabs: React.FC = () => {
   const [isSearchValue, setSearchValue] = useState<string>('');
   const router = useRouter();
 
-  const handleButtonClick = () => {
-    router.push('document/add');
-  };
-
   const toggleTab = (index: string) => {
     setToggleState(index);
   };
@@ -63,15 +59,16 @@ const Tabs: React.FC = () => {
             />
           </div>
           <div>
-            <Button
-              aria-label="addButton"
-              className="bg-purpleLg text-white ml-[15px] border-none"
-              startContent={<PlusIcon />}
-              size="sm"
-              onClick={handleButtonClick}
-            >
-              Добавить
-            </Button>
+            <Link href='/document/add' className="ml-[15px]">
+              <Button
+                aria-label="addButton"
+                className="bg-purpleLg text-white  border-none"
+                startContent={<PlusIcon />}
+                size="sm"
+              >
+                Добавить
+              </Button>
+            </Link>
           </div>
         </div>
       </div>

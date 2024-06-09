@@ -43,7 +43,7 @@ const Topbar = () => {
 
   return (
     <>
-      <div className="w-full pl-[100px] bg-white shadow mb-5">
+      <div className="w-full bg-white shadow mb-5">
         <div className="container py-4">
           <div className="w-full flex flex-wrap justify-end">
 

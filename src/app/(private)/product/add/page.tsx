@@ -6,13 +6,13 @@ import Form from '../_components/form';
 
 const Home = () => {
   return (
-    <div className="flex">
+    <>
       <Sidebar />
       <main className="w-full h-full pl-[100px]">
         <Topbar />
         <Form />
       </main>
-    </div>
+    </>
   );
 };
 

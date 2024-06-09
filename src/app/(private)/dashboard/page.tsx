@@ -3,19 +3,20 @@ import React from 'react';
 import Sidebar from '@/components/sidebar';
 import Tabs from '@/components/ConsoleCom/tabs';
 import Topbar from '@/components/core/AllComponent/topbar'
+import SecondApp from '@/components/ConsoleCom/secondTab';
 
 
 const Console = () => {
   return (
-    <div className='flex'>
-      <div className='h-screen flex'>
-        <Sidebar />
-      </div>
+    <>
+      <Sidebar />
+
       <main className='w-full h-full pl-[100px]'>
         <Topbar />
         <Tabs />
       </main>
-    </div>
+    </>
+
   )
 }
 
