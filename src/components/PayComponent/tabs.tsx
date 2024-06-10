@@ -48,30 +48,30 @@ const Tabs: React.FC = () => {
           <span className='text-[#B0B0B0] text-[16px]'>Платежки &gt; {toggleState}</span>
         </div>
         <div className="flex items-center">
-          <div>
-            <Input
-              isClearable
-              placeholder="Поиск"
-              className="shadow-md"
-              classNames={SearchInput}
-              size="sm"
-              value={isSearchValue}
-              variant="bordered"
-              onClear={() => setSearchValue("")}
-              onValueChange={onSearchChange}
-            />
-          </div>
-          <div>
-              <Button
-                className="bg-purpleLg text-white ml-[15px] border-none"
-                startContent={<PlusIcon />}
-                onPress={handleOpen}
-                size="sm"
-              >
-                Добавить
-              </Button>
-              <PayModalApp isOpen={isOpen} onOpen={onOpen} onClose={onClose}/>
-          </div>
+
+          <Input
+            isClearable
+            placeholder="Поиск"
+            classNames={SearchInput}
+            size="sm"
+            value={isSearchValue}
+            variant="bordered"
+            radius="sm"
+            onClear={() => setSearchValue("")}
+            onValueChange={onSearchChange}
+          />
+
+          <Button
+            aria-label="addButton"
+            className="bg-purpleLg text-white ml-[15px] border-none"
+            startContent={<PlusIcon />}
+            onPress={handleOpen}
+            size="sm"
+          >
+            Добавить
+          </Button>
+          <PayModalApp isOpen={isOpen} onOpen={onOpen} onClose={onClose} />
+
         </div>
       </div>
       <div>

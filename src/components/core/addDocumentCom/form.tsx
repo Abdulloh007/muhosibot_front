@@ -24,7 +24,7 @@ const Form = () => {
 
 
     return (
-        <div className='mt-10 h-[90%]'>
+        <div className='container'>
             <div className="container-form h-full">
                 <div className='flex items-center mb-[38px]'>
                     <Link href='/document'>

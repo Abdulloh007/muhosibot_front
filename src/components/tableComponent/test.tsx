@@ -43,30 +43,29 @@ const Tabs: React.FC = () => {
           <span className='text-[#B0B0B0] text-[16px]'>Сотрудники &gt; Все Сотрудники</span>
         </div>
         <div className="flex items-center">
-          <div>
-            <Input
-              isClearable
-              placeholder="Поиск"
-              className="shadow-md"
-              classNames={SearchInput}
+
+          <Input
+            isClearable
+            placeholder="Поиск"
+            classNames={SearchInput}
+            size="sm"
+            value={isSearchValue}
+            variant="bordered"
+            radius="sm"
+            onClear={() => setSearchValue("")}
+            onValueChange={onSearchChange}
+          />
+
+          <Link href="cooperator/add" className="ml-[15px]">
+            <Button
+              className="bg-purpleLg text-white border-none"
+              startContent={<PlusIcon />}
               size="sm"
-              value={isSearchValue}
-              variant="bordered"
-              onClear={() => setSearchValue("")}
-              onValueChange={onSearchChange}
-            />
-          </div>
-          <div>
-            <Link href="cooperator/add" className="ml-[15px]">
-              <Button
-                className="bg-purpleLg text-white border-none"
-                startContent={<PlusIcon />}
-                size="sm"
-              >
-                Добавить
-              </Button>
-            </Link>
-          </div>
+            >
+              Добавить
+            </Button>
+          </Link>
+
         </div>
       </div>
       <div>

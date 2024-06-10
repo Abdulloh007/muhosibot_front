@@ -16,7 +16,7 @@ const SearchInput = {
 const Tabs: React.FC = () => {
   const [toggleState, setToggleState] = useState<string>('Все Товары');
   const [isSearchValue, setSearchValue] = useState<string>('');
-  
+
 
   const toggleTab = (index: string) => {
     setToggleState(index);
@@ -46,32 +46,29 @@ const Tabs: React.FC = () => {
           <span className='text-[#B0B0B0] text-[16px]'>Товары &gt; {toggleState}</span>
         </div>
         <div className='flex items-center'>
-          <div>
-            <Input
-              isClearable
-              placeholder='Поиск'
-              className='shadow-md'
-              classNames={SearchInput}
-              size='sm'
-              value={isSearchValue}
-              variant='bordered'
-              onClear={() => setSearchValue('')}
-              onValueChange={onSearchChange}
-            />
-          </div>
-          <div>
-            <Link href="/product/add" className="ml-[15px]">
 
-              <Button
-                
-                className='bg-purpleLg text-white  border-none'
-                startContent={<PlusIcon />}
-                size='sm'
-              >
-                Добавить
-              </Button>
-            </Link>
-          </div>
+          <Input
+            isClearable
+            placeholder="Поиск"
+            classNames={SearchInput}
+            size="sm"
+            value={isSearchValue}
+            variant="bordered"
+            radius="sm"
+            onClear={() => setSearchValue("")}
+            onValueChange={onSearchChange}
+          />
+
+          <Link href="/product/add" className="ml-[15px]">
+            <Button
+              className='bg-purpleLg text-white  border-none'
+              startContent={<PlusIcon />}
+              size='sm'
+            >
+              Добавить
+            </Button>
+          </Link>
+
         </div>
       </div>
       <div>
@@ -97,29 +94,29 @@ const Tabs: React.FC = () => {
                 Услуги
               </button>
             </div>
-          <ExportComponent users1={users1} collapse={true}/>
-        </div>
-        <div className="content-tabs h-[500px] z-0">
-          <div
-            className={`${toggleState === 'Все Товары' ? "content  active-content" : "content"}`}
-          >
-            <App filterVal={toggleState} searchVal={isSearchValue} />
+            <ExportComponent users1={users1} collapse={true} />
           </div>
+          <div className="content-tabs h-[500px] z-0">
+            <div
+              className={`${toggleState === 'Все Товары' ? "content  active-content" : "content"}`}
+            >
+              <App filterVal={toggleState} searchVal={isSearchValue} />
+            </div>
 
-          <div
-            className={toggleState === 'Товары' ? "content  active-content" : "content"}
-          >
-            <App filterVal={toggleState} searchVal={isSearchValue} />
-          </div>
+            <div
+              className={toggleState === 'Товары' ? "content  active-content" : "content"}
+            >
+              <App filterVal={toggleState} searchVal={isSearchValue} />
+            </div>
 
-          <div
-            className={toggleState === 'Услуги' ? "content  active-content" : "content"}
-          >
-            <App filterVal={toggleState} searchVal={isSearchValue} />
+            <div
+              className={toggleState === 'Услуги' ? "content  active-content" : "content"}
+            >
+              <App filterVal={toggleState} searchVal={isSearchValue} />
+            </div>
           </div>
         </div>
       </div>
-    </div>
     </div >
   );
 };

@@ -9,9 +9,6 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 
 
-
-
-
 const SearchInput = {
   inputWrapper: ["border-none", "bg-[#FFFFFF]", "py-0", "h-[33px]", "w-[250px]"],
 }
@@ -48,30 +45,29 @@ const Tabs: React.FC = () => {
           <span className='text-[#B0B0B0] text-[16px]'>Контрагенты &gt; {toggleState}</span>
         </div>
         <div className="flex items-center">
-          <div>
-            <Input
-              isClearable
-              placeholder="Поиск"
-              className="shadow-md"
-              classNames={SearchInput}
+
+          <Input
+            isClearable
+            placeholder="Поиск"
+            classNames={SearchInput}
+            size="sm"
+            value={isSearchValue}
+            variant="bordered"
+            radius="sm"
+            onClear={() => setSearchValue("")}
+            onValueChange={onSearchChange}
+          />
+
+          <Link href='/contragent/add' className='ml-[15px]'>
+            <Button
+              className="bg-purpleLg text-white  border-none"
+              startContent={<PlusIcon />}
               size="sm"
-              value={isSearchValue}
-              variant="bordered"
-              onClear={() => setSearchValue("")}
-              onValueChange={onSearchChange}
-            />
-          </div>
-          <div>
-            <Link href='/contragent/add' className='ml-[15px]'>
-              <Button
-                className="bg-purpleLg text-white  border-none"
-                startContent={<PlusIcon />}
-                size="sm"
-              >
-                Добавить
-              </Button>
-            </Link>
-          </div>
+            >
+              Добавить
+            </Button>
+          </Link>
+
         </div>
       </div>
       <div>

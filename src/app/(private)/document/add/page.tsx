@@ -7,7 +7,7 @@ const Home = () => {
   return (
     <>
       <Sidebar />
-      <main className="flex-1 pt-4 pb-12 px-16 ml-24 z-0">
+      <main className="w-full h-full pl-[100px]">
         <Topbar />
         <Form />
       </main>
