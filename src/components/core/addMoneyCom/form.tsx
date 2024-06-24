@@ -9,8 +9,7 @@ import {
     defaultStyleLabel,
     defaultStyleDiv,
     btnClass,
-    TypeOperation,
-    TypeOperationDoc,
+    TypeOperation
 } from './data';
 import { ExpandMore } from '@mui/icons-material';
 
@@ -47,10 +46,9 @@ const Form = () => {
                                     >
                                         {TypeOperation.map((item) => (
                                             <SelectItem
-                                                key={item.txt.toLocaleLowerCase()}
-                                                value={item.txt.toLocaleLowerCase()}
+                                                key={item.code}
                                             >
-                                                {item.txt}
+                                                {item.title}
                                             </SelectItem>
                                         ))}
                                     </Select>
@@ -115,7 +113,7 @@ const Form = () => {
                             <label className='w-full flex items-baseline'>
                                 <p style={defaultStyleLabel}>Платежный документ</p>
                                 <div style={defaultStyleDiv} className='flex items-center' >
-                                    <Select
+                                    {/* <Select
                                         placeholder="Платёжное поручение"
                                         labelPlacement="outside"
                                         className="bg-[#F1F1F1] border-b-2 mr-1 border-[#757575]"
@@ -131,7 +129,7 @@ const Form = () => {
                                                 {item.txt}
                                             </SelectItem>
                                         ))}
-                                    </Select>
+                                    </Select> */}
                                     №
                                     <input
                                         aria-label='Платёжное поручение'
