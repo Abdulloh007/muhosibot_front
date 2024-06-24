@@ -42,7 +42,7 @@ const Tabs: React.FC = () => {
   const [details, setDetails] = useState('')
   const [total, setTotal] = useState(0)
   const [total_tax, setTotalTax] = useState(0)
-  const [counterparty_id, set_counterparty_id] = useState<number>(0)
+  const [counterparty_id, set_counterparty_id] = useState<any>(0)
   const [date, setDate] = useState('')
   const payment_account = useAppSelector(state => state.paymentAccount.id)
 
