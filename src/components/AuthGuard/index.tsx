@@ -1,5 +1,8 @@
 'use client';
 
+import { setCashbox } from "@/lib/features/cashboxSlice";
+import { setOrganisation } from "@/lib/features/organisationSlice";
+import { setPaymentAccount } from "@/lib/features/paymentAccountSlice";
 import { checkToken, logout, setUser } from "@/lib/features/user/userSlice";
 import { useAppDispatch, useAppSelector } from "@/lib/hooks";
 import axios from "axios";
@@ -31,8 +34,16 @@ function AuthGuard({children}: Props) {
                 }
             }).then((res: any) => {
                 dispatch(setUser(res.data));
+                dispatch(setOrganisation(res.data.primary_organization))
+                dispatch(setPaymentAccount(res.data.payment_accounts[0]))
+                dispatch(setCashbox(res.data.cashboxes[0]))
                 setIsLoading(false)
-            }, (error) => error.code === "ERR_BAD_REQUEST" ? dispatch(logout()) : null)
+            }, (error) => {
+                if (error.code === "ERR_BAD_REQUEST" ) {
+                    push('/auth');
+                    dispatch(logout())
+                }
+            })
 
         }
     }, [token, push]);

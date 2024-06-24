@@ -58,7 +58,9 @@ export default function Registration() {
                 name: navigator?.appName,
                 ip: ipAddress
             }),
-            password
+            password,
+            tax_system: taxSystem,
+            activity: typeOfBusiness
         }).then((res: any) => {
             localStorage.setItem(btoa('token'), res.data.token)
             router.push('/dashboard')

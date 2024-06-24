@@ -1,8 +1,8 @@
 export const columns = [
-  {name: "ФИО", uid: "name", sortable: true},
-  {name: "Должность", uid: "role", sortable: true},
+  {name: "ФИО", uid: "full_name", sortable: true},
+  {name: "Должность", uid: "position", sortable: true},
   {name: "Статус", uid: "status", sortable: true},
-  {name: "Принят", uid: "date"},
+  {name: "Принят", uid: "begin_date"},
 ];
 
 

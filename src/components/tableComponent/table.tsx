@@ -1,22 +1,26 @@
 import { Table, TableHeader, TableColumn, TableBody, TableRow, TableCell, getKeyValue } from "@nextui-org/react";
 import { columns, users } from "./data";
+import { useRouter } from "next/navigation";
 
 
 interface AppProps {
   filterVal: string,
-  searchVal: string
+  searchVal: string,
+  stuff: any[]
 }
 
 const tableClassName = {
   th: ["bg-transparent", "text-default-500", "border-b", "border-divider"],
 }
 
-const App: React.FC<AppProps> = ({filterVal, searchVal}) => {
-
-  
+const App: React.FC<AppProps> = ({filterVal, searchVal, stuff}) => {
+  const router = useRouter()
+  function editStuff(id: string | number | bigint) {
+    router.push('/cooperator/add?edit=' + id)
+  }
 
   const filterItems = () => {
-    let filteredUsers = [...users];
+    let filteredUsers = [...stuff];
 
     if (filterVal && filterVal !== "All") {
       filteredUsers = filteredUsers.filter(
@@ -26,7 +30,7 @@ const App: React.FC<AppProps> = ({filterVal, searchVal}) => {
 
     if (searchVal) {
       filteredUsers = filteredUsers.filter((user) =>
-        user.name.toLowerCase().includes(searchVal.toLowerCase())
+        user.first_name.toLowerCase().includes(searchVal.toLowerCase())
       );
     }
 
@@ -38,7 +42,7 @@ const App: React.FC<AppProps> = ({filterVal, searchVal}) => {
       <Table
         aria-label="Rows actions table example with dynamic content"
         selectionMode="multiple"
-        onRowAction={(key) => alert(`Opening item ${key}...`)}
+        onRowAction={(key) => editStuff(key)}
         shadow="none"
         classNames={tableClassName}
         width={1200}

@@ -7,21 +7,15 @@ export const defaultStyleDiv = { width: "calc(100% - 210px)" };
 
 export const TypeOperation = [
   {
-    txt: "Поступление",
-  },
-  {
-    txt: "Списание",
-  },
-];
-
-export const TypeOperationDoc = [
-  {
-    txt: "Поступление",
-  },
-  {
-    txt: "Списание",
-  },
-];
+    code: 'cash',
+    title: 'Наличными'
+  }, {
+    code: 'bank',
+    title: 'По банку'
+  }, {
+    code: 'ect',
+    title: 'Прочее'
+  }];
 
 export const btnClass = {
   trigger: [

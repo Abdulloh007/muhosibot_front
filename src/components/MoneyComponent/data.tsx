@@ -38,7 +38,7 @@ export const users: ItemType[] = [
     type: {
       docs: 'Оплата товаров и услуг клиентами',
       title: 'Связать с документом',
-      link: 'https://www.instagram.com/_niggafood/?hl=ru',
+      link: 'http://google.com',
     },
     typeCheck: '+10000',
     taxes: '10000'
@@ -63,7 +63,7 @@ export const users: ItemType[] = [
     type: {
       docs: 'Оплата товаров и услуг клиентами',
       title: 'Связать с документом',
-      link: 'https://www.instagram.com/_niggafood/?hl=ru',
+      link: 'http://google.com',
     },
     typeCheck: '+10000',
     taxes: ''

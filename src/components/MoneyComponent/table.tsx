@@ -1,36 +1,38 @@
 import { Table, TableHeader, TableColumn, TableBody, TableRow, TableCell, getKeyValue, useDisclosure } from "@nextui-org/react";
 import { columns, users } from "./data";
 import ArrowIcon from "@/components/core/Icons/ArrowIcon"
-import MyModalApp from '@/components/core/addMoneyCom/modal'
+import {Transaction} from "@/interfaces/transaction";
 
 
 interface AppProps {
   filterVal: string,
-  searchVal: string
+  searchVal: string,
+  rows: Transaction[]
 }
 
 const tableClassName = {
   th: ["bg-transparent", "text-default-500", "border-b", "border-divider"],
 }
 
-const App: React.FC<AppProps> = ({ filterVal, searchVal }) => {
-  const { isOpen, onOpen, onClose } = useDisclosure();
-  const filterItems = () => {
-    let filteredUsers = [...users];
+const App: React.FC<AppProps> = ({ filterVal, searchVal, rows }) => {
+  const { isOpen, onOpen, onClose} = useDisclosure();
+  
 
+  function filterItems() {
+    let filteredList = rows
     if (filterVal && filterVal !== "Все операции") {
-      filteredUsers = filteredUsers.filter(
-        (user) => user.docs.toLowerCase() === filterVal.toLowerCase()
+      filteredList = filteredList.filter(
+        item => item.operation === filterVal
       );
     }
 
     if (searchVal) {
-      filteredUsers = filteredUsers.filter((user) =>
-        user.docs.toLowerCase().includes(searchVal.toLowerCase())
+      filteredList = filteredList.filter(item =>
+        item.title.includes(searchVal.toLowerCase())
       );
     }
 
-    return filteredUsers;
+    return filteredList;
   };
 
   const handleOpen = () => {
@@ -39,7 +41,6 @@ const App: React.FC<AppProps> = ({ filterVal, searchVal }) => {
 
   return (
     <div className="flex flex-col gap-3">
-      <MyModalApp isOpen={isOpen} onOpen={onOpen} onClose={onClose} />
       <Table
         aria-label="Rows actions table example with dynamic content"
         selectionMode="multiple"
@@ -63,23 +64,23 @@ const App: React.FC<AppProps> = ({ filterVal, searchVal }) => {
                     {
                       columnKey == "type" ? (
                         <>
-                          <p>{item.type.docs}</p>
-                          {item.type.link ? (
+                          <p>{item.type.title}</p>
+                          {item.document_id ? (
                             <div className="flex items-center">
                               <ArrowIcon />
-                              <a href={item.type.link} className='text-linkSm pl-0.5 text-[12px]'>{item.type.title}</a>
+                              <a href={item.document?.title} className='text-linkSm pl-0.5 text-[12px]'>{item.document?.title}</a>
                             </div>
                           )
                             :
-                            <p className="text-[#757575] text-[12px]">{item.type.title}</p>}
+                            <p className="text-[#757575] text-[12px]">{item.title}</p>}
                         </>
                       )
                         : (columnKey == 'docs'
                           ?
-                          <span className={item.docs == 'Поступления' ? `text-[#009650]` : `text-[#FFB904]`}>{item.typeCheck}</span>
+                          <span className={item.operation == 'income' ? `text-[#009650]` : `text-[#FFB904]`}>{item.total}</span>
                           :
                           (columnKey == 'taxes'
-                            ? <span className={item.docs == 'Поступления' ? `text-[#009650]` : `text-[#FFB904]`}>{item.taxes}</span>
+                            ? <span className={item.operation == 'income' ? `text-[#009650]` : `text-[#FFB904]`}>{item.total_tax}</span>
                             : getKeyValue(item, columnKey)
                           )
                         )

@@ -1,9 +1,20 @@
 import { configureStore } from '@reduxjs/toolkit'
 import userSlice from './features/user/userSlice'
+import toastSlice from './features/user/toastSlice'
+import sidebarSlice from './features/sidebarSlice'
+import organisationSlice from './features/organisationSlice'
+import paymentAccountSlice from './features/paymentAccountSlice'
+import cashboxSlice from './features/cashboxSlice'
+
 export const makeStore = () => {
     return configureStore({
         reducer: {
-            profile: userSlice
+            profile: userSlice,
+            toaste: toastSlice,
+            sidebar: sidebarSlice,
+            organisation: organisationSlice,
+            paymentAccount: paymentAccountSlice,
+            cashbox: cashboxSlice
         }
     })
 }

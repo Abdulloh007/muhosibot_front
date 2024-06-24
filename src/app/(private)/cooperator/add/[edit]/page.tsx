@@ -1,21 +1,18 @@
-'use client'
 import React from 'react';
 import Sidebar from '@/components/sidebar';
-import Tabs from '@/components/tableComponent/test';
 import Topbar from '@/components/core/AllComponent/topbar'
+import Form from '@/components/core/addExployerCom/form';
 
-
-const Explorer = () => {
+const Home = ({ params }: {params: {edit: string}}) => {
   return (
     <>
       <Sidebar />
-      {/* {'w-full h-full ' + (window.outerWidth > 576 ? 'pl-[100px]' : '')} */}
       <main className='w-full h-full pl-[100px]'>
         <Topbar />
-        <Tabs />
+        <Form id={params.edit}/>
       </main>
     </>
   );
 };
 
-export default Explorer;
+export default Home;

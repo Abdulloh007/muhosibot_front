@@ -5,11 +5,13 @@ import { Collapse } from "@mui/material";
 import { Button, Checkbox, Dropdown, DropdownItem, DropdownMenu, DropdownTrigger } from "@nextui-org/react";
 import ListItemText from "@mui/material/ListItemText";
 import ListItem from "@mui/material/ListItem";
-import { useAppSelector } from "@/lib/hooks";
+import { useAppDispatch, useAppSelector } from "@/lib/hooks";
 import Link from "next/link";
+import { toggleIsOpen } from "@/lib/features/sidebarSlice";
 
 const bellSvg = "/iconMenu/bell.svg";
 const headPhonesSvg = "/iconMenu/headphones.svg";
+const menuBarsSvg = "/iconMenu/menu-bars.svg";
 
 const Topbar = () => {
   const [isNotify, setNotify] = useState(false);
@@ -36,6 +38,7 @@ const Topbar = () => {
       status: 'фксршмув'
     },
   ])
+  const dispatch = useAppDispatch()
 
   const handleRead = (e) => {
     SetRead(e.target.checked);
@@ -77,8 +80,14 @@ const Topbar = () => {
               <div className="w-9 h-9  flex justify-center items-center bg-white rounded-full">
                 <Image src="/user-avatar.png" width={17} height={17} alt="svg-el" />
               </div>
-              <p className="ml-2">{userData.surname} {userData.name} {userData.patronimic}</p>
+              <p className="ml-2">{window.outerWidth > 576 ? `${userData.surname} ${userData.name} ${userData.patronimic}` : ''}</p>
             </Link>
+            {window.outerWidth < 576
+              ? (
+                <Button onClick={e => dispatch(toggleIsOpen())} isIconOnly className="ml-[15px] bg-white rounded-full">
+                  <Image src={menuBarsSvg} width={17} height={17} alt="svg-el" />
+                </Button>
+              ) : (<></>)}
           </div>
         </div>
       </div>

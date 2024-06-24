@@ -1,4 +1,5 @@
 import { Device } from "./device";
+import Organization from "./organization";
 
 export interface UserMain {
     id:  number;
@@ -16,4 +17,5 @@ export interface UserMain {
     gender: null | string;
     code_phrase: null | string;
     devices: null | Device[];
+    organizations: Organization[]
 }

@@ -1,5 +1,5 @@
 'use client';
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import App from "./table";
 import { users } from "./data";
 import ExportComponent from '@/components/core/AllComponent/ExportComponent'
@@ -7,6 +7,8 @@ import { Button, Input } from '@nextui-org/react';
 import PlusIcon from "@/components/core/Icons/PlusIcon";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import axios from "axios";
+import { useAppSelector } from "@/lib/hooks";
 
 const SearchInput = {
   inputWrapper: ["border-none", "bg-[#FFFFFF]", "py-0", "h-[33px]", "w-[250px]"],
@@ -15,7 +17,26 @@ const SearchInput = {
 const Tabs: React.FC = () => {
   const [toggleState, setToggleState] = useState<string>('All');
   const [isSearchValue, setSearchValue] = useState<string>('');
+  const [stuff, setStauff] = useState<any[]>([]);
+  const organization = useAppSelector((state) => state.profile.organizations[0])
   const router = useRouter();
+
+  useEffect(() => {
+    axios.get('/api/stuff/' + organization.id, {
+      headers: {
+        'Authorization': 'Bearer ' + localStorage.getItem(btoa('token'))
+      }
+    }).then((res: any) => {
+      const stuffList = res.data.data.map((item: any) => {
+        return {
+          ...item,
+          full_name: `${item.last_name} ${item.first_name} ${item.father_name}` ,
+          begin_date: new Date(item.begin_date).toDateString()
+        }
+      })
+      setStauff(stuffList)
+    })
+  }, [])
 
   const toggleTab = (index: string) => {
     setToggleState(index);
@@ -97,19 +118,19 @@ const Tabs: React.FC = () => {
             <div
               className={`${toggleState === 'All' ? "content  active-content" : "content"}`}
             >
-              <App filterVal='All' searchVal={isSearchValue} />
+              <App filterVal='All' searchVal={isSearchValue} stuff={stuff} />
             </div>
 
             <div
               className={toggleState === 'Работает' ? "content  active-content" : "content"}
             >
-              <App filterVal='Работает' searchVal={isSearchValue} />
+              <App filterVal='Работает' searchVal={isSearchValue} stuff={stuff} />
             </div>
 
             <div
               className={toggleState === 'Уволен' ? "content  active-content" : "content"}
             >
-              <App filterVal='Уволен' searchVal={isSearchValue} />
+              <App filterVal='Уволен' searchVal={isSearchValue} stuff={stuff} />
             </div>
           </div>
         </div>
