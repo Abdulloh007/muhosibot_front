@@ -63,7 +63,7 @@ const Tabs: React.FC = () => {
         </div>
       </div>
       <div>
-        <div className="flex items-center">
+        <div className="flex">
           <div className="flex flex-col w-[60%]">
             <div className="py-4 mt-[35px] rounded-md shadow-md bg-white pl-4">
               <div className="flex items-center mb-3">
@@ -129,13 +129,14 @@ const Tabs: React.FC = () => {
               </Link>
             </div>
           </div>
-          <div className="flex flex-col ml-[30px] w-[40%] h-[490px] ">
-            <div className="rounded-md pt-[15px] pl-[10px] h-full bg-white shadow-md overflow-y-auto">
+          <div className="flex flex-col ml-[30px] w-[40%]">
+            <div className="rounded-md py-4 mt-[35px] pl-[10px] h-full bg-white shadow-md overflow-y-auto">
               <h1 className="font-medium text-[24px]">События дня</h1>
               <Accordion>
                 {news.map((item: any) => (
                   <AccordionItem key={item.id} aria-label={item.title.rendered} title={item.title.rendered}>
-                    <p dangerouslySetInnerHTML={{__html: item.excerpt.rendered}}></p>
+                    <p className="text-[16px]" dangerouslySetInnerHTML={{__html: item.excerpt.rendered}}></p>
+                    <a href={item.link} className="text-[14px] text-blue-500">Подробнее</a>
                   </AccordionItem>
                 ))}
 

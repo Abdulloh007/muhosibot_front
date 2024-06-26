@@ -1,12 +1,13 @@
 'use client';
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import App from "./table";
 import { tabs, users } from "./data";
-import { Button, Input } from '@nextui-org/react';
+import { Button, Dropdown, DropdownItem, DropdownMenu, DropdownTrigger, Input } from '@nextui-org/react';
 import ExportComponent from '@/components/core/AllComponent/ExportComponent'
 import PlusIcon from "@/components/core/Icons/PlusIcon";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import axios from "axios";
 
 
 
@@ -15,19 +16,29 @@ const SearchInput = {
 }
 
 const Tabs: React.FC = () => {
-  const [toggleState, setToggleState] = useState<string>('Все документы');
+  const [toggleState, setToggleState] = useState<string>('Исходящие');
   const [isSearchValue, setSearchValue] = useState<string>('');
+  const [doctypeList, setDoctypeList] = useState([]);
+
   const router = useRouter();
 
-  const toggleTab = (index: string) => {
+  useEffect(() => {
+    axios.get('/api/doctypes', {
+      headers: {
+        'Authorization': 'Bearer ' + localStorage.getItem(btoa('token'))
+      }
+    }).then(res => setDoctypeList(res.data))
+  }, [])
+
+  function toggleTab(index: string) {
     setToggleState(index);
   };
 
-  const onSearchChange = (value: string) => {
+  function onSearchChange(value: string) {
     setSearchValue(value);
   };
 
-  const filterItems = () => {
+  function filterItems() {
     if (toggleState !== "Все документы") {
       users.filter((user) => user.type.toLowerCase() === toggleState.toLowerCase());
     }
@@ -58,30 +69,30 @@ const Tabs: React.FC = () => {
             onValueChange={onSearchChange}
           />
 
-          <Link href='/document/add' className="ml-[15px]">
-            <Button
-              aria-label="addButton"
-              className="bg-purpleLg text-white  border-none"
-              startContent={<PlusIcon />}
-              size="sm"
+          <Dropdown>
+            <DropdownTrigger>
+              <Button
+                className="bg-purpleLg text-white ml-[15px] border-none"
+                startContent={<PlusIcon />}
+                // onPress={handleOpen}
+                size="sm"
+              >
+                Добавить
+              </Button>
+            </DropdownTrigger>
+            <DropdownMenu aria-label="Static Actions" onAction={(key: any) => router.push('/document/add?doctype_id=' + key)}
             >
-              Добавить
-            </Button>
-          </Link>
-
+              {doctypeList.map((item: any) => (
+                <DropdownItem key={item.id}>{item.title}</DropdownItem>
+              ))}
+            </DropdownMenu>
+          </Dropdown>
         </div>
       </div>
       <div>
         <div className='w-full'>
           <div className="flex justify-between">
             <div className="bloc-tabs">
-              <button
-                aria-label="TabButton"
-                className={toggleState === 'Все документы' ? "tabs active-tabs" : "tabs"}
-                onClick={() => toggleTab(tabs.all)}
-              >
-                Все
-              </button>
               <button
                 aria-label="TabButton"
                 className={toggleState === 'Исходящие' ? "tabs active-tabs" : "tabs"}
@@ -100,12 +111,6 @@ const Tabs: React.FC = () => {
             <ExportComponent users1={users1} collapse={true} />
           </div>
           <div className="content-tabs h-[500px] z-0">
-            <div
-              className={`${toggleState === 'Все документы' ? "content  active-content" : "content"}`}
-            >
-              <App filterVal={toggleState} searchVal={isSearchValue} />
-            </div>
-
             <div
               className={toggleState === 'Исходящие' ? "content  active-content" : "content"}
             >
