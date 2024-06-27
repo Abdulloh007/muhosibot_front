@@ -8,30 +8,31 @@ import SummaDoc from '@/components/DocumentCom/summaDoc'
 
 interface AppProps {
   filterVal: string,
-  searchVal: string
+  searchVal: string,
+  rows: any[]
 }
 
 const tableClassName = {
   th: ["bg-transparent", "text-default-500", "border-b", "border-divider"],
 }
 
-const App: React.FC<AppProps> = ({ filterVal, searchVal }) => {
+const App: React.FC<AppProps> = ({ filterVal, searchVal, rows }) => {
   const filterItems = () => {
-    let filteredUsers = [...users];
+    let filteredRows = rows;
 
-    if (filterVal && filterVal !== "Все документы") {
-      filteredUsers = filteredUsers.filter(
+    if (filterVal && filterVal !== "all") {
+      filteredRows = filteredRows.filter(
         (user) => user.type.toLowerCase() === filterVal.toLowerCase()
       );
     }
 
     if (searchVal) {
-      filteredUsers = filteredUsers.filter((user) =>
+      filteredRows = filteredRows.filter((user) =>
         user.group.toLowerCase().includes(searchVal.toLowerCase())
       );
     }
 
-    return filteredUsers;
+    return filteredRows;
   };
 
   return (

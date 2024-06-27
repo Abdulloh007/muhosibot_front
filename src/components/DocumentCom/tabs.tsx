@@ -8,6 +8,7 @@ import PlusIcon from "@/components/core/Icons/PlusIcon";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import axios from "axios";
+import { DocumentType } from "@/interfaces/document";
 
 
 
@@ -16,9 +17,10 @@ const SearchInput = {
 }
 
 const Tabs: React.FC = () => {
-  const [toggleState, setToggleState] = useState<string>('Исходящие');
+  const [toggleState, setToggleState] = useState<string>('outgoing');
   const [isSearchValue, setSearchValue] = useState<string>('');
-  const [doctypeList, setDoctypeList] = useState([]);
+  const [doctypeList, setDoctypeList] = useState<DocumentType[]>([]);
+  const [docs, setDocs] = useState<Document[]>([])
 
   const router = useRouter();
 
@@ -28,6 +30,12 @@ const Tabs: React.FC = () => {
         'Authorization': 'Bearer ' + localStorage.getItem(btoa('token'))
       }
     }).then(res => setDoctypeList(res.data))
+
+    axios.get('/api/documents', {
+      headers: {
+        'Authorization': 'Bearer ' + localStorage.getItem(btoa('token'))
+      }
+    }).then(res => setDocs(res.data))
   }, [])
 
   function toggleTab(index: string) {
@@ -53,7 +61,7 @@ const Tabs: React.FC = () => {
       <div className='flex mb-[26px] items-center justify-between'>
         <div className='flex flex-col'>
           <h1 className='text-[36px] font-semibold'>Документы</h1>
-          <span className='text-[#B0B0B0] text-[16px]'>Документы &gt; {toggleState}</span>
+          <span className='text-[#B0B0B0] text-[16px]'>Документы &gt; {toggleState == 'outgoing' ? 'Исходящие' : toggleState == 'income' ? 'Входящие' : ''}</span>
         </div>
         <div className="flex items-center">
 
@@ -80,9 +88,9 @@ const Tabs: React.FC = () => {
                 Добавить
               </Button>
             </DropdownTrigger>
-            <DropdownMenu aria-label="Static Actions" onAction={(key: any) => router.push('/document/add?doctype_id=' + key)}
+            <DropdownMenu aria-label="Static Actions" onAction={(key: any) => router.push('/document/add?type=' + toggleState + '&doctype_id=' + key)}
             >
-              {doctypeList.map((item: any) => (
+              {doctypeList.filter(item => item.type === toggleState).map((item: any) => (
                 <DropdownItem key={item.id}>{item.title}</DropdownItem>
               ))}
             </DropdownMenu>
@@ -95,14 +103,14 @@ const Tabs: React.FC = () => {
             <div className="bloc-tabs">
               <button
                 aria-label="TabButton"
-                className={toggleState === 'Исходящие' ? "tabs active-tabs" : "tabs"}
+                className={toggleState === 'outgoing' ? "tabs active-tabs" : "tabs"}
                 onClick={() => toggleTab(tabs.secondTab)}
               >
                 Исходящие
               </button>
               <button
                 aria-label="TabButton"
-                className={toggleState === 'Входящие' ? "tabs active-tabs" : "tabs"}
+                className={toggleState === 'income' ? "tabs active-tabs" : "tabs"}
                 onClick={() => toggleTab(tabs.thirdTab)}
               >
                 Входящие
@@ -112,15 +120,15 @@ const Tabs: React.FC = () => {
           </div>
           <div className="content-tabs h-[500px] z-0">
             <div
-              className={toggleState === 'Исходящие' ? "content  active-content" : "content"}
+              className={toggleState === 'outgoing' ? "content  active-content" : "content"}
             >
-              <App filterVal={toggleState} searchVal={isSearchValue} />
+              <App rows={docs} filterVal={toggleState} searchVal={isSearchValue} />
             </div>
 
             <div
-              className={toggleState === 'Входящие' ? "content  active-content" : "content"}
+              className={toggleState === 'income' ? "content  active-content" : "content"}
             >
-              <App filterVal={toggleState} searchVal={isSearchValue} />
+              <App rows={docs} filterVal={toggleState} searchVal={isSearchValue} />
             </div>
           </div>
         </div>

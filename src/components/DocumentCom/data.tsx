@@ -10,8 +10,8 @@ export const columns = [
 export const tabs = {
   all: 'Все документы',
   all_product: 'All',
-  secondTab: 'Исходящие',
-  thirdTab: 'Входящие',
+  secondTab: 'outgoing',
+  thirdTab: 'income',
 }
 
 export const valueChangeYellow = {
