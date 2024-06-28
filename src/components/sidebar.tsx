@@ -90,6 +90,13 @@ const Sidebar = () => {
       href: '/setting',
       text: 'Настройки'
     },
+    {
+      id: 9,
+      img: '/iconMenu/file.svg',
+      alt: 'icon-file',
+      href: '/report',
+      text: 'Отчёты'
+    },
 
   ]
   const isOpenMob = useAppSelector(state => state.sidebar.isOpen)
