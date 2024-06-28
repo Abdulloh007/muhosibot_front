@@ -1,4 +1,4 @@
-import Counterparty from "./counterpaty";
+import {Counterparty} from "./counterpaty";
 
 export interface DocumentType {
     id:  number;

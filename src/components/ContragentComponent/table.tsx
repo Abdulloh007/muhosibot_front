@@ -1,6 +1,6 @@
 import { Table, TableHeader, TableColumn, TableBody, TableRow, TableCell, getKeyValue } from "@nextui-org/react";
 import { columns, users } from "./data";
-import Counterparty from "@/interfaces/counterpaty";
+import {Counterparty} from "@/interfaces/counterpaty";
 
 
 interface AppProps {

@@ -8,7 +8,7 @@ import PlusIcon from "@/components/core/Icons/PlusIcon";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import axios from "axios";
-import Counterparty from "@/interfaces/counterpaty";
+import { Counterparty } from "@/interfaces/counterpaty";
 
 
 const SearchInput = {
