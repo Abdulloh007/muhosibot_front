@@ -15,7 +15,7 @@ import {
 } from "../core/addMoneyCom/data";
 import { ExpandMore } from "@mui/icons-material";
 import axios from "axios";
-import Counterparty from "@/interfaces/counterpaty";
+import {Counterparty} from "@/interfaces/counterpaty";
 import { useAppSelector } from "@/lib/hooks";
 import { Transaction } from "@/interfaces/transaction";
 

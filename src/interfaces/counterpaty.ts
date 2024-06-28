@@ -1,4 +1,10 @@
-export default interface Counterparty {
+export interface CounterpartyCategory {
+    id: number
+    title: string
+    description: string
+}
+
+export interface Counterparty {
     id: number
     full_name: string
     short_name: null | string
@@ -6,6 +12,7 @@ export default interface Counterparty {
     physic_address: null | string
     site: null | string
     category_id: null | number
+    category: null | CounterpartyCategory
     inn: null | string
     kpp: null | string
     contacts: null | string

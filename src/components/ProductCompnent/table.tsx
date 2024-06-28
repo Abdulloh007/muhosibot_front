@@ -4,26 +4,27 @@ import { columns, users } from "./data";
 
 interface AppProps {
   filterVal: string,
-  searchVal: string
+  searchVal: string,
+  rows: any
 }
 
 const tableClassName = {
   th: ["bg-transparent", "text-default-500", "border-b", "border-divider"],
 }
 
-const App: React.FC<AppProps> = ({filterVal, searchVal}) => {
+const App: React.FC<AppProps> = ({filterVal, searchVal, rows}) => {
   const filterItems = () => {
-    let filteredUsers = [...users];
+    let filteredUsers = [...rows];
 
-    if (filterVal && filterVal !== "Все Товары") {
-      filteredUsers = filteredUsers.filter(
-        (user) => user.type.toLowerCase() === filterVal.toLowerCase()
-      );
-    }
+    // if (filterVal && filterVal !== "Все Товары") {
+    //   filteredUsers = filteredUsers.filter(
+    //     (user) => user.type.toLowerCase() === filterVal.toLowerCase()
+    //   );
+    // }
 
     if (searchVal) {
       filteredUsers = filteredUsers.filter((user) =>
-        user.type.toLowerCase().includes(searchVal.toLowerCase())
+        user.name.toLowerCase().includes(searchVal.toLowerCase())
       );
     }
 

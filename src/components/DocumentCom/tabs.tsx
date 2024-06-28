@@ -8,7 +8,7 @@ import PlusIcon from "@/components/core/Icons/PlusIcon";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import axios from "axios";
-import { DocumentType } from "@/interfaces/document";
+import { Document, DocumentType } from "@/interfaces/document";
 
 
 

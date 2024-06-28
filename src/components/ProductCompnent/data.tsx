@@ -2,10 +2,10 @@
 
 export const columns = [
 {name: "Товар/Услуга", uid: "name", sortable: true},
-{name: "Группа", uid: "group", sortable: true},
-{name: "Артикул", uid: "articul", sortable: true},
-{name: "Остаток", uid: "remain"},
-{name: "Ед.измерения/Ставка", uid: "oneTip"},
+// {name: "Группа", uid: "group", sortable: true},
+// {name: "Артикул", uid: "articul", sortable: true},
+{name: "Остаток", uid: "balance"},
+{name: "Ед.измерения/Ставка", uid: "unit"},
 ];
 
 export const tabs = {

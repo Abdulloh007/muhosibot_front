@@ -1,5 +1,5 @@
 'use client';
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import App from "./table";
 import { tabs, users } from "./data";
 import { Button, Input } from '@nextui-org/react';
@@ -7,6 +7,8 @@ import ExportComponent from '@/components/core/AllComponent/ExportComponent'
 import PlusIcon from "@/components/core/Icons/PlusIcon";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import axios from "axios";
+import Counterparty from "@/interfaces/counterpaty";
 
 
 const SearchInput = {
@@ -16,7 +18,16 @@ const SearchInput = {
 const Tabs: React.FC = () => {
   const [toggleState, setToggleState] = useState<string>('Все Контрагенты');
   const [isSearchValue, setSearchValue] = useState<string>('');
+  const [counterpartyList, setCounterpartyList] = useState<Counterparty[]>([])
   const router = useRouter()
+
+  useEffect(() => {
+    axios.get('/api/counterparty', {
+      headers: {
+        'Authorization': 'Bearer ' + localStorage.getItem(btoa('token'))
+      }
+    }).then(res => setCounterpartyList(res.data))
+  }, [])
 
   const toggleTab = (index: string) => {
     setToggleState(index);
@@ -102,19 +113,19 @@ const Tabs: React.FC = () => {
             <div
               className={`${toggleState === 'Все Контрагенты' ? "content  active-content" : "content"}`}
             >
-              <App filterVal={toggleState} searchVal={isSearchValue} />
+              <App rows={counterpartyList} filterVal={toggleState} searchVal={isSearchValue} />
             </div>
 
             <div
               className={toggleState === 'Активные' ? "content  active-content" : "content"}
             >
-              <App filterVal={toggleState} searchVal={isSearchValue} />
+              <App rows={counterpartyList} filterVal={toggleState} searchVal={isSearchValue} />
             </div>
 
             <div
               className={toggleState === 'В архиве' ? "content  active-content" : "content"}
             >
-              <App filterVal={toggleState} searchVal={isSearchValue} />
+              <App rows={counterpartyList} filterVal={toggleState} searchVal={isSearchValue} />
             </div>
           </div>
         </div>

@@ -4,12 +4,13 @@ import ArrowIcon from "@/components/core/Icons/ArrowIcon"
 import TableDoc from "@/components/DocumentCom/tableDoc"
 import StatusDoc from '@/components/DocumentCom/statusDoc'
 import SummaDoc from '@/components/DocumentCom/summaDoc'
+import { Document } from "@/interfaces/document";
 
 
 interface AppProps {
   filterVal: string,
   searchVal: string,
-  rows: any[]
+  rows: Document[]
 }
 
 const tableClassName = {
@@ -22,13 +23,13 @@ const App: React.FC<AppProps> = ({ filterVal, searchVal, rows }) => {
 
     if (filterVal && filterVal !== "all") {
       filteredRows = filteredRows.filter(
-        (user) => user.type.toLowerCase() === filterVal.toLowerCase()
+        (doc) => doc.document_type.type === filterVal.toLowerCase()
       );
     }
 
     if (searchVal) {
-      filteredRows = filteredRows.filter((user) =>
-        user.group.toLowerCase().includes(searchVal.toLowerCase())
+      filteredRows = filteredRows.filter((doc) =>
+        doc.title.toLowerCase().includes(searchVal.toLowerCase())
       );
     }
 
@@ -57,12 +58,10 @@ const App: React.FC<AppProps> = ({ filterVal, searchVal, rows }) => {
               {(columnKey) => {
                 return (
                   <TableCell className={`pb-5 pt-6 `}>
-                    {columnKey === 'docs' ? (
-                      <TableDoc table={item.docs} />
-                    ) : columnKey == 'status' ? (
-                      <StatusDoc status={item.status} />
-                    ) : columnKey == 'summa' ? (
-                      <SummaDoc summa={item.summa} />
+                    {columnKey === 'document' ? (
+                      <TableDoc document={item} />
+                    ) : columnKey === 'counterparty' ? (
+                      <>{item.counterparty?.full_name}</>
                     ) : (
                       getKeyValue(item, columnKey)
                     )

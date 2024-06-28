@@ -26,6 +26,26 @@ export const country = [
     txt: "Афганистан",
   },
 ];
+export const UnitList = [
+  {
+    txt: "кг",
+  },
+  {
+    txt: "шт",
+  },
+  {
+    txt: "т",
+  },
+  {
+    txt: "г",
+  },
+  {
+    txt: "см",
+  },
+  {
+    txt: "м",
+  },
+]
 export const GroupList = [
   {
     txt: "Наличными",

@@ -1,10 +1,10 @@
 
 
 export const columns = [
-  { name: "Контрагент", uid: "group", sortable: true },
-  { name: "Документы", uid: "docs", sortable: true },
+  { name: "Контрагент", uid: "counterparty", sortable: true },
+  { name: "Документы", uid: "document", sortable: true },
   { name: "Статус", uid: "status", sortable: true },
-  { name: "Сумма, смн", uid: "summa", sortable: true },
+  { name: "Сумма, смн", uid: "sum", sortable: true },
 ];
 
 export const tabs = {

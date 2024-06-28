@@ -1,9 +1,9 @@
 
 
 export const columns = [
-{name: "Название", uid: "name", sortable: true},
-{name: "Группа", uid: "group", sortable: true},
-{name: "Неоплаченные", uid: "type", sortable: true},
+{name: "Название", uid: "full_name", sortable: true},
+{name: "Группа", uid: "category", sortable: true},
+// {name: "Неоплаченные", uid: "type", sortable: true},
 ];
 
 export const tabs = {

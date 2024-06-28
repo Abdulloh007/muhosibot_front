@@ -1,33 +1,35 @@
 import { Table, TableHeader, TableColumn, TableBody, TableRow, TableCell, getKeyValue } from "@nextui-org/react";
 import { columns, users } from "./data";
+import Counterparty from "@/interfaces/counterpaty";
 
 
 interface AppProps {
   filterVal: string,
-  searchVal: string
+  searchVal: string,
+  rows: Counterparty[]
 }
 
 const tableClassName = {
   th: ["bg-transparent", "text-default-500", "border-b", "border-divider"],
 }
 
-const App: React.FC<AppProps> = ({filterVal, searchVal}) => {
+const App: React.FC<AppProps> = ({filterVal, searchVal, rows}) => {
   const filterItems = () => {
-    let filteredUsers = [...users];
+    let filteredRows = [...rows];
 
     if (filterVal && filterVal !== "Все Контрагенты") {
-      filteredUsers = filteredUsers.filter(
-        (user) => user.typeFilter.toLowerCase() === filterVal.toLowerCase()
+      filteredRows = filteredRows.filter(
+        (counterparty) => counterparty.category?.title === filterVal.toLowerCase()
       );
     }
 
     if (searchVal) {
-      filteredUsers = filteredUsers.filter((user) =>
-        user.type.toLowerCase().includes(searchVal.toLowerCase())
+      filteredRows = filteredRows.filter((counterparty) =>
+        counterparty.full_name.toLowerCase().includes(searchVal.toLowerCase())
       );
     }
 
-    return filteredUsers;
+    return filteredRows;
   };
 
   return (
@@ -52,7 +54,7 @@ const App: React.FC<AppProps> = ({filterVal, searchVal}) => {
               {(columnKey) => {
                 return (
                   <TableCell className={`pb-5 pt-6`}>
-                    {getKeyValue(item, columnKey)}
+                    {columnKey == 'category' ? item.category?.title : getKeyValue(item, columnKey)}
                   </TableCell>
                 );
               }}

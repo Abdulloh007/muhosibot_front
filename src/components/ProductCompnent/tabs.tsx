@@ -1,11 +1,12 @@
 'use client';
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import App from "./table";
 import { tabs, users } from "./data";
 import { Button, Input } from '@nextui-org/react';
 import ExportComponent from '@/components/core/AllComponent/ExportComponent'
 import PlusIcon from '@/components/core/Icons/PlusIcon';
 import Link from "next/link";
+import axios from "axios";
 
 
 
@@ -16,7 +17,15 @@ const SearchInput = {
 const Tabs: React.FC = () => {
   const [toggleState, setToggleState] = useState<string>('Все Товары');
   const [isSearchValue, setSearchValue] = useState<string>('');
+  const [productList, setProductList] = useState<any[]>([]);
 
+  useEffect(() => {
+    axios.get('/api/products', {
+      headers: {
+          'Authorization': 'Bearer ' + localStorage.getItem(btoa('token'))
+      }
+  }).then(res => setProductList(res.data))
+  }, [])
 
   const toggleTab = (index: string) => {
     setToggleState(index);
@@ -28,10 +37,10 @@ const Tabs: React.FC = () => {
 
   const filterItems = () => {
     if (toggleState !== "Все Товары") {
-      users.filter((user) => user.type.toLowerCase() === toggleState.toLowerCase());
+      productList.filter((user) => user.type.toLowerCase() === toggleState.toLowerCase());
     }
 
-    return users
+    return productList
   };
 
   const users1 = filterItems()
@@ -100,19 +109,19 @@ const Tabs: React.FC = () => {
             <div
               className={`${toggleState === 'Все Товары' ? "content  active-content" : "content"}`}
             >
-              <App filterVal={toggleState} searchVal={isSearchValue} />
+              <App rows={productList} filterVal={toggleState} searchVal={isSearchValue} />
             </div>
 
             <div
               className={toggleState === 'Товары' ? "content  active-content" : "content"}
             >
-              <App filterVal={toggleState} searchVal={isSearchValue} />
+              <App rows={productList} filterVal={toggleState} searchVal={isSearchValue} />
             </div>
 
             <div
               className={toggleState === 'Услуги' ? "content  active-content" : "content"}
             >
-              <App filterVal={toggleState} searchVal={isSearchValue} />
+              <App rows={productList} filterVal={toggleState} searchVal={isSearchValue} />
             </div>
           </div>
         </div>
