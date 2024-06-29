@@ -1,5 +1,5 @@
 import React from "react";
-import { Tabs, Tab, RadioGroup, Radio } from "@nextui-org/react";
+import { Tabs, Tab, RadioGroup, Radio, Button } from "@nextui-org/react";
 import PenIcon from "@/components/core/Icons/PenIcon";
 import { useAppSelector } from "@/lib/hooks";
 
@@ -10,6 +10,10 @@ const TabsSelect = {
 
 const TabsCom = () => {
 
+  function exitApp () {
+    localStorage.clear();
+    location.reload()
+  }
   const userData = useAppSelector(state => state.profile)
 
   return (
@@ -61,7 +65,7 @@ const TabsCom = () => {
                   </div>
                 </div>
               </div>
-              <div className="mt-[40px]">
+              <div className="mt-[40px] mb-[60px]">
                 <h1 className="font-semibold text-[18px]">Вход в платформу</h1>
                 <RadioGroup className="mt-[20px]" defaultValue="toPassword">
                   <Radio value="toPassword">По паролю</Radio>
@@ -76,6 +80,9 @@ const TabsCom = () => {
                     </a>
                   </Radio>
                 </RadioGroup>
+              </div>
+              <div className="w-full ">
+                <Button variant="ghost" color="danger" onClick={exitApp}>Выйти</Button>
               </div>
             </Tab>
             <Tab key="tarif" title="Тарифы и оплата" />
