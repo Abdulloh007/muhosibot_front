@@ -18,6 +18,8 @@ const Tabs: React.FC = () => {
   const [isSearchValue, setSearchValue] = useState<string>('');
   const { isOpen, onOpen, onClose } = useDisclosure();
 
+  const [paymentList, setPaymentList] = useState<any[]>([])
+
   const handleOpen = () => {
     onOpen();
   };
@@ -103,19 +105,19 @@ const Tabs: React.FC = () => {
             <div
               className={`${toggleState === 'Все платежки' ? "content  active-content" : "content"}`}
             >
-              <App filterVal={toggleState} searchVal={isSearchValue} />
+              <App rows={paymentList} filterVal={toggleState} searchVal={isSearchValue} />
             </div>
 
             <div
               className={toggleState === 'не оплачено' ? "content  active-content" : "content"}
             >
-              <App filterVal={toggleState} searchVal={isSearchValue} />
+              <App rows={paymentList} filterVal={toggleState} searchVal={isSearchValue} />
             </div>
 
             <div
               className={toggleState === 'оплачено' ? "content  active-content" : "content"}
             >
-              <App filterVal={toggleState} searchVal={isSearchValue} />
+              <App rows={paymentList} filterVal={toggleState} searchVal={isSearchValue} />
             </div>
           </div>
         </div>

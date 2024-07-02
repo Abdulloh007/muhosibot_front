@@ -21,7 +21,7 @@ const FooterMoney = () => {
               <p className="text-[#FFB904] ml-5">-- 3 000, 00</p>
             </div>
           </div>
-          <div className="flex justify-between items-center">
+          {/* <div className="flex justify-between items-center">
             <p style={{ width: 220 }} className="text-[14px]">
               Доходы / расходы, смн
             </p>
@@ -29,7 +29,7 @@ const FooterMoney = () => {
               <p className="text-[#009650]">+10 000, 00</p>
               <p className="text-[#FFB904] ml-5">-- 3 000, 00</p>
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
     </div>

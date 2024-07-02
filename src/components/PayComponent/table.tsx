@@ -10,6 +10,7 @@ import PayModalApp from '@/components/core/addPayCom/modal'
 interface AppProps {
   filterVal: string,
   searchVal: string,
+  rows: any[]
 }
 
 type handleChange = (e: React.ChangeEvent<HTMLSelectElement>, id: number) => void;
@@ -18,16 +19,17 @@ const tableClassName = {
   th: ["bg-transparent", "text-default-500", "border-b", "border-divider"],
 }
 
-const App: React.FC<AppProps> = ({ filterVal, searchVal }) => {
+const App: React.FC<AppProps> = ({ filterVal, searchVal, rows }) => {
   const [isPayed, setPayed] = useState<string>('оплачено')
   const [isPayedBool, setPayedBool] = useState<boolean>(false)
   const [isItemId, setItemId] = useState<number>(0)
   const { isOpen, onOpen, onClose } = useDisclosure();
-  let filteredUsers = [...users];
+  let filteredRows = rows;
+
   const filterItems = () => {
     
     if (isPayedBool) {
-      filteredUsers = filteredUsers.map((user) => {
+      filteredRows = filteredRows.map((user) => {
         if (user.id === isItemId) {
           return {
             ...user,
@@ -39,18 +41,18 @@ const App: React.FC<AppProps> = ({ filterVal, searchVal }) => {
     }
 
     if (filterVal && filterVal !== "Все платежки") {
-      filteredUsers = filteredUsers.filter(
+      filteredRows = filteredRows.filter(
         (user) => user.payed.toLowerCase() === filterVal.toLowerCase()
       );
     }
 
     if (searchVal) {
-      filteredUsers = filteredUsers.filter((user) =>
+      filteredRows = filteredRows.filter((user) =>
         user.type.toLowerCase().includes(searchVal.toLowerCase())
       );
     }
 
-    return filteredUsers;
+    return filteredRows;
   };
 
   const handleOpen = () => {
@@ -106,7 +108,7 @@ const App: React.FC<AppProps> = ({ filterVal, searchVal }) => {
                               selectorIcon={<ExpandMore />}
                               onChange={(e) => handleSelectChange(e, item.id)}
                             >
-                              {item.purchase.map((item) => (
+                              {item.purchase.map((item: any) => (
                                 <SelectItem
                                   key={item.txt}
                                   value={item.txt}

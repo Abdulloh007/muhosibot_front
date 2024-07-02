@@ -20,6 +20,7 @@ import {Counterparty} from '@/interfaces/counterpaty';
 
 const emptyPos = {
     id: 0,
+    product_id: 0,
     name: '',
     price: 0,
     count: 1,
@@ -100,7 +101,8 @@ function Form() {
             public: false,
             sum: docSum,
             status: doctype?.type === 'sign' ? 'Не подписан' : doctype?.type === 'pay' ? 'Ждет оплаты' : 'В работе',
-            products: products
+            products: products,
+            group
         }, {
             headers: {
                 'Authorization': 'Bearer ' + localStorage.getItem(btoa('token'))
@@ -116,7 +118,7 @@ function Form() {
                 switch (name) {
                     case 'name':
                         const prod = productList.find(item => item.name === value);
-                        if (prod) return { ...item, [name]: prod.name, unit: prod.unit, price: prod.price, total: ((item.count * prod.price) - item.sale).toFixed(2) }
+                        if (prod) return { ...item, [name]: prod.name, product_id: prod.id, unit: prod.unit, price: prod.price, total: ((item.count * prod.price) - item.sale).toFixed(2) }
                         else return { ...item, [name]: value, total: ((item.count * prod.price) - item.sale).toFixed(2) }
                     case 'total':
                         return { ...item, price: (parseFloat(value) / item.count).toFixed(2), [name]: value }
