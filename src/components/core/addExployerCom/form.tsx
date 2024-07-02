@@ -18,9 +18,12 @@ import { useAppDispatch, useAppSelector } from '@/lib/hooks';
 import { addToList } from '@/lib/features/user/toastSlice';
 import { useParams, useRouter, useSearchParams } from 'next/navigation';
 
-const Form = (props: { id: string }) => {
+const Form = () => {
     const [editId, setEditId] = useState<null | string>(null)
+
     const [editingStuff, setEdditingStuff] = useState<any>(null)
+    const [isSameAddress, setIsSameAddress] = useState<any>(false)
+
     const [full_name, set_full_name] = useState('')
     const [birthday, setBirthday] = useState(new Date().toISOString())
     const [begin_date, set_begin_date] = useState(new Date().toISOString())
@@ -235,14 +238,14 @@ const Form = (props: { id: string }) => {
                         <div className='flex w-full items-baseline mb-[14px]'>
                             <label className='flex w-full items-baseline'>
                                 <p style={defaultStyleLabel}>Адрес регистрации</p>
-                                <input value={legal_address} onChange={(e: any) => set_legal_address(e.target.value)} aria-label='Адрес регистрации' style={defaultStyleDiv} type="text" placeholder='г.Худжанд ул.Пушкина' className={`${defaultStyleInput}`} />
+                                <input value={legal_address} onChange={(e: any) => {set_legal_address(e.target.value); if(isSameAddress) set_physic_address(e.target.value)}} aria-label='Адрес регистрации' style={defaultStyleDiv} type="text" placeholder='г.Худжанд ул.Пушкина' className={`${defaultStyleInput}`} />
                             </label>
                         </div>
                         <div className='flex w-full items-baseline mb-[14px]'>
                             <label className='flex w-full items-baseline'>
                                 <p style={defaultStyleLabel}>Адрес проживания</p>
                                 <div style={defaultStyleDiv} className='flex flex-col w-full'>
-                                    <Checkbox radius="md">Совпадает с адресом регистрации</Checkbox>
+                                    <Checkbox radius="md"  value={isSameAddress} onValueChange={setIsSameAddress}>Совпадает с адресом регистрации</Checkbox>
                                     <input value={physic_address} onChange={(e: any) => set_physic_address(e.target.value)} aria-label='Адрес проживания' type="text" placeholder='г.Худжанд ул.Пушкина' className={`${defaultStyleInput} mt-5`} />
                                 </div>
                             </label>

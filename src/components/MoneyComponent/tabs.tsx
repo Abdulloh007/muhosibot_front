@@ -115,7 +115,7 @@ const Tabs: React.FC = () => {
       headers: {
         'Authorization': 'Bearer ' + localStorage.getItem(btoa('token'))
       }
-    }).then(res => {onClose()})
+    }).then(res => {onClose(); location.reload()})
   }
 
   return (

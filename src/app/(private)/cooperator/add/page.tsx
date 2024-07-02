@@ -9,7 +9,7 @@ const Home = () => {
       <Sidebar />
       <main className="w-full h-full pl-[100px]">
         <Topbar />
-        <Form id=''/>
+        <Form/>
       </main>
     </>
   );

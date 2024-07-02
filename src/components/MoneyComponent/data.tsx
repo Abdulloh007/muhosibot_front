@@ -2,7 +2,7 @@
 
 export const columns = [
   { name: "Дата", uid: "date", sortable: true },
-  { name: "Контрагент", uid: "group", sortable: true },
+  { name: "Контрагент", uid: "counterparty", sortable: true },
   { name: "Тип операции", uid: "type", sortable: true },
   { name: "Поступило/Списано", uid: "docs", sortable: true },
   { name: "В налоге УСН, смн", uid: "taxes", sortable: true },

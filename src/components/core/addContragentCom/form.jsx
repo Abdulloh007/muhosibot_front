@@ -32,7 +32,7 @@ const emptyPaymentAccount = {
   bic: '',
   сorrespondent_account: '',
   comments: '',
-  status: 'open',
+  status: 'active',
   balance: 0
 }
 
@@ -179,7 +179,7 @@ function Form() {
                 <p style={defaultStyleLabel}>Краткое название</p>
                 <input
                   style={defaultStyleDiv}
-                  placeholder="Используется в интерфейсе Эльбы"
+                  placeholder="Используется в интерфейсе"
                   type="text"
                   className={`${defaultStyleInput}`}
                   value={short_name}
@@ -399,6 +399,7 @@ function Form() {
                       name="account"
                       value={item.account}
                       onChange={e => onPaymentAccountsChange(e, item.id)}
+                      required
                     />
                     <input
                       type="text"
@@ -415,6 +416,7 @@ function Form() {
                       name="bank_name"
                       value={item.bank_name}
                       onChange={e => onPaymentAccountsChange(e, item.id)}
+                      required
                     />
                     <input
                       type="text"
@@ -423,6 +425,7 @@ function Form() {
                       name="bic"
                       value={item.bic}
                       onChange={e => onPaymentAccountsChange(e, item.id)}
+                      required
                     />
                     <input
                       type="text"
@@ -446,7 +449,7 @@ function Form() {
                       name="status"
                       onChange={e => onPaymentAccountsChange(e, item.id)}
                       >
-                      <Radio value="open">Действующий</Radio>
+                      <Radio value="active">Действующий</Radio>
                       <Radio value="close">Закрытый</Radio>
                     </RadioGroup>
                     <Button className='absolute top-[20%] left-[100%]' isIconOnly color="danger" variant="light" aria-label="Delete" onClick={e => set_payment_accounts([...payment_accounts.filter(it => it.id !== item.id)])}>

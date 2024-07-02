@@ -1,7 +1,7 @@
 import { Table, TableHeader, TableColumn, TableBody, TableRow, TableCell, getKeyValue, useDisclosure } from "@nextui-org/react";
-import { columns, users } from "./data";
+import { columns } from "./data";
 import ArrowIcon from "@/components/core/Icons/ArrowIcon"
-import {Transaction} from "@/interfaces/transaction";
+import { Transaction } from "@/interfaces/transaction";
 
 
 interface AppProps {
@@ -15,8 +15,8 @@ const tableClassName = {
 }
 
 const App: React.FC<AppProps> = ({ filterVal, searchVal, rows }) => {
-  const { isOpen, onOpen, onClose} = useDisclosure();
-  
+  const { isOpen, onOpen, onClose } = useDisclosure();
+
 
   function filterItems() {
     let filteredList = rows
