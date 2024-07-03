@@ -27,6 +27,9 @@ const Tabs: React.FC = () => {
   const bankBalance = useAppSelector(state => state.paymentAccount.balance);
   const cashboxBalance = useAppSelector(state => state.cashbox.balance);
 
+  const incomes_total = useAppSelector(state => state.profile.incomes_total);
+  const outgoing_total = useAppSelector(state => state.profile.outgoing_total);
+
   useEffect(() => {
     axios.get('/wp-json/wp/v2/posts?categories=22').then((res: any) => {
       setNews(res.data)
@@ -74,10 +77,10 @@ const Tabs: React.FC = () => {
               </div>
               <div className="mb-[10px]">
                 <p className="mt-[10px]">
-                  Доход: <span>0.00 </span>смн
+                  Поступления: <span>{incomes_total} </span>смн
                 </p>
                 <p className="mt-[10px]">
-                  Расход: <span>0.00 </span>смн
+                  Списания: <span>{outgoing_total} </span>смн
                 </p>
                 <p className="mt-[10px]">
                   Текущий остаток по кассе:{" "}

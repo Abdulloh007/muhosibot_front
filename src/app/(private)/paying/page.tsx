@@ -14,7 +14,6 @@ const Paying = () => {
         <Topbar />
         <div className='flex flex-col justify-center items-center w-full'>
           <Tabs />
-          <FooterPaying />
         </div>
       </main>
     </>

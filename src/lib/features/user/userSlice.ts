@@ -19,7 +19,9 @@ const initialState: UserMain = {
     gender: null,
     code_phrase: null,
     devices: null,
-    organizations: []
+    organizations: [],
+    incomes_total: 0,
+    outgoing_total: 0
 }
 
 export const userSlice = createSlice({
@@ -42,6 +44,8 @@ export const userSlice = createSlice({
             state.phone = action.payload.phone
             state.email = action.payload.email
             state.organizations = action.payload.organizations
+            state.incomes_total = action.payload.incomes_total
+            state.outgoing_total = action.payload.outgoing_total
         },
         checkToken: (state) => {
             state.token = localStorage.getItem(btoa('token'))

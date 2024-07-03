@@ -6,6 +6,7 @@ import { Button, Input, useDisclosure } from '@nextui-org/react';
 import ExportComponent from '@/components/core/AllComponent/ExportComponent'
 import PlusIcon from "@/components/core/Icons/PlusIcon";
 import PayModalApp from '@/components/core/addPayCom/modal'
+import { Payment } from "@/interfaces/payment";
 
 
 
@@ -18,7 +19,7 @@ const Tabs: React.FC = () => {
   const [isSearchValue, setSearchValue] = useState<string>('');
   const { isOpen, onOpen, onClose } = useDisclosure();
 
-  const [paymentList, setPaymentList] = useState<any[]>([])
+  const [paymentList, setPaymentList] = useState<Payment[]>([])
 
   const handleOpen = () => {
     onOpen();

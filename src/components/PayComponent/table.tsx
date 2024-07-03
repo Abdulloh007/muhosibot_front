@@ -4,13 +4,14 @@ import { Select, SelectItem } from "@nextui-org/react";
 import { ExpandMore } from '@mui/icons-material';
 import { useState } from "react";
 import PayModalApp from '@/components/core/addPayCom/modal'
+import { Payment } from "@/interfaces/payment";
 
 
 
 interface AppProps {
   filterVal: string,
   searchVal: string,
-  rows: any[]
+  rows: Payment[]
 }
 
 type handleChange = (e: React.ChangeEvent<HTMLSelectElement>, id: number) => void;
@@ -42,13 +43,13 @@ const App: React.FC<AppProps> = ({ filterVal, searchVal, rows }) => {
 
     if (filterVal && filterVal !== "Все платежки") {
       filteredRows = filteredRows.filter(
-        (user) => user.payed.toLowerCase() === filterVal.toLowerCase()
+        (item) => item.payment_purpose.toLowerCase() === filterVal.toLowerCase()
       );
     }
 
     if (searchVal) {
       filteredRows = filteredRows.filter((user) =>
-        user.type.toLowerCase().includes(searchVal.toLowerCase())
+        user.payment_purpose.toLowerCase().includes(searchVal.toLowerCase())
       );
     }
 
@@ -93,30 +94,31 @@ const App: React.FC<AppProps> = ({ filterVal, searchVal, rows }) => {
                     {
                       columnKey == "group" ?
                         (
-                          <p className="text-linkSm">{item.group}</p>
+                          <p className="text-linkSm">{item.comment}</p>
                         )
                         : columnKey == 'docs'
                           ?
-                          (<p className="text-linkSm">{item.type}</p>)
+                          (<p className="text-linkSm">{item.comment}</p>)
                           : columnKey == 'purchase' ?
-                            (<Select
-                              placeholder="Оплачено"
-                              labelPlacement="outside"
-                              className="rounded-md hover:bg-none"
-                              disableSelectorIconRotation
-                              classNames={btnClass}
-                              selectorIcon={<ExpandMore />}
-                              onChange={(e) => handleSelectChange(e, item.id)}
-                            >
-                              {item.purchase.map((item: any) => (
-                                <SelectItem
-                                  key={item.txt}
-                                  value={item.txt}
-                                >
-                                  {item.txt}
-                                </SelectItem>
-                              ))}
-                            </Select>)
+                            // (<Select
+                            //   placeholder="Оплачено"
+                            //   labelPlacement="outside"
+                            //   className="rounded-md hover:bg-none"
+                            //   disableSelectorIconRotation
+                            //   classNames={btnClass}
+                            //   selectorIcon={<ExpandMore />}
+                            //   onChange={(e) => handleSelectChange(e, item.id)}
+                            // >
+                            //   {item.purchase.map((item: any) => (
+                            //     <SelectItem
+                            //       key={item.txt}
+                            //       value={item.txt}
+                            //     >
+                            //       {item.txt}
+                            //     </SelectItem>
+                            //   ))}
+                            // </Select>)
+                            (<></>)
                             : getKeyValue(item, columnKey)
 
                     }

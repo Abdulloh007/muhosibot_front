@@ -62,28 +62,29 @@ const App: React.FC<AppProps> = ({ filterVal, searchVal, rows }) => {
                 return (
                   <TableCell className={`pb-5 pt-6 `}>
                     {
-                      columnKey == "type" ? (
-                        <>
-                          <p>{item.type.title}</p>
-                          {item.document_id ? (
-                            <div className="flex items-center">
-                              <ArrowIcon />
-                              <a href={item.document?.title} className='text-linkSm pl-0.5 text-[12px]'>{item.document?.title}</a>
-                            </div>
-                          )
-                            :
-                            <p className="text-[#757575] text-[12px]">{item.title}</p>}
-                        </>
-                      )
-                        : (columnKey == 'docs'
-                          ?
-                          <span className={item.operation == 'income' ? `text-[#009650]` : `text-[#FFB904]`}>{item.total}</span>
-                          :
-                          (columnKey == 'taxes'
-                            ? <span className={item.operation == 'income' ? `text-[#009650]` : `text-[#FFB904]`}>{item.total_tax}</span>
-                            : getKeyValue(item, columnKey)
-                          )
+                      columnKey == "type"
+                        ? (
+                          <>
+                            <p>{item.type.title}</p>
+                            {item.document_id ? (
+                              <div className="flex items-center">
+                                <ArrowIcon />
+                                <a href={item.document?.title} className='text-linkSm pl-0.5 text-[12px]'>{item.document?.title}</a>
+                              </div>
+                            )
+                              :
+                              <p className="text-[#757575] text-[12px]">{item.title}</p>}
+                          </>
                         )
+                        : columnKey == 'docs'
+                          ? (<span className={item.operation == 'income' ? `text-[#009650]` : `text-[#FFB904]`}>{item.total}</span>)
+                          : columnKey == 'counterparty'
+                            ? (<span className={'text-[#4d89ff] cursor-pointer focus:text-underline'}>{item.counterparty.short_name}</span>)
+                            : columnKey == 'taxes'
+                              ? (<span className={item.operation == 'income' ? `text-[#009650]` : `text-[#FFB904]`}>{item.total_tax}</span>)
+                              : (getKeyValue(item, columnKey))
+
+
                     }
                   </TableCell>
                 )

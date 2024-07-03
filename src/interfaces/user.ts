@@ -17,5 +17,7 @@ export interface UserMain {
     gender: null | string;
     code_phrase: null | string;
     devices: null | Device[];
-    organizations: Organization[]
+    organizations: Organization[];
+    incomes_total: number
+    outgoing_total: number
 }
