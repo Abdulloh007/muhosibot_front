@@ -69,7 +69,7 @@ const App: React.FC<AppProps> = ({ filterVal, searchVal, rows }) => {
                             {item.document_id ? (
                               <div className="flex items-center">
                                 <ArrowIcon />
-                                <a href={item.document?.title} className='text-linkSm pl-0.5 text-[12px]'>{item.document?.title}</a>
+                                <a href={'document/view?id=' + item.document?.id} className='text-linkSm pl-0.5 text-[12px]'>{item.document?.title} от {new Date(item.document?.created_at || '').toLocaleDateString()}</a>
                               </div>
                             )
                               :
@@ -83,8 +83,6 @@ const App: React.FC<AppProps> = ({ filterVal, searchVal, rows }) => {
                             : columnKey == 'taxes'
                               ? (<span className={item.operation == 'income' ? `text-[#009650]` : `text-[#FFB904]`}>{item.total_tax}</span>)
                               : (getKeyValue(item, columnKey))
-
-
                     }
                   </TableCell>
                 )

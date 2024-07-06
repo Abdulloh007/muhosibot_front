@@ -25,10 +25,22 @@ const App: React.FC<AppProps> = ({ filterVal, searchVal, rows }) => {
   const [isPayedBool, setPayedBool] = useState<boolean>(false)
   const [isItemId, setItemId] = useState<number>(0)
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const statusList = [
+    {
+      title: 'В ожидании',
+      value: 'pending'
+    },
+    {
+      title: 'Оплачен',
+      value: 'payed'
+    }
+  ]
+
+
   let filteredRows = rows;
 
   const filterItems = () => {
-    
+
     if (isPayedBool) {
       filteredRows = filteredRows.map((user) => {
         if (user.id === isItemId) {
@@ -92,34 +104,36 @@ const App: React.FC<AppProps> = ({ filterVal, searchVal, rows }) => {
                 return (
                   <TableCell className={`pb-5 pt-6 `}>
                     {
-                      columnKey == "group" ?
+                      columnKey == "created_at" ?
                         (
-                          <p className="text-linkSm">{item.comment}</p>
-                        )
-                        : columnKey == 'docs'
-                          ?
-                          (<p className="text-linkSm">{item.comment}</p>)
-                          : columnKey == 'purchase' ?
-                            // (<Select
-                            //   placeholder="Оплачено"
-                            //   labelPlacement="outside"
-                            //   className="rounded-md hover:bg-none"
-                            //   disableSelectorIconRotation
-                            //   classNames={btnClass}
-                            //   selectorIcon={<ExpandMore />}
-                            //   onChange={(e) => handleSelectChange(e, item.id)}
-                            // >
-                            //   {item.purchase.map((item: any) => (
-                            //     <SelectItem
-                            //       key={item.txt}
-                            //       value={item.txt}
-                            //     >
-                            //       {item.txt}
-                            //     </SelectItem>
-                            //   ))}
-                            // </Select>)
-                            (<></>)
-                            : getKeyValue(item, columnKey)
+                          <p>{new Date(item.created_at).toLocaleDateString()}</p>
+                        ) :
+                        columnKey == "date" ?
+                          (
+                            <p>{new Date(item.date).toLocaleDateString()}</p>
+                          )
+                          : columnKey == 'owner'
+                            ?
+                            (<p className="text-linkSm">{item.owner.full_name}</p>)
+                            : columnKey == 'status' ?
+                              (<Select
+                                placeholder="Оплачено"
+                                labelPlacement="outside"
+                                className="rounded-md hover:bg-none"
+                                disableSelectorIconRotation
+                                classNames={btnClass}
+                                selectorIcon={<ExpandMore />}
+                                onChange={(e) => handleSelectChange(e, item.id)}
+                              >
+                                {statusList.map((item: any) => (
+                                  <SelectItem
+                                    key={item.value}
+                                  >
+                                    {item.title}
+                                  </SelectItem>
+                                ))}
+                              </Select>)
+                              : getKeyValue(item, columnKey)
 
                     }
                   </TableCell>

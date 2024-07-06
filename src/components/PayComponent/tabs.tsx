@@ -1,5 +1,5 @@
 'use client';
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import App from "./table";
 import { tabs, users } from "./data";
 import { Button, Input, useDisclosure } from '@nextui-org/react';
@@ -7,6 +7,7 @@ import ExportComponent from '@/components/core/AllComponent/ExportComponent'
 import PlusIcon from "@/components/core/Icons/PlusIcon";
 import PayModalApp from '@/components/core/addPayCom/modal'
 import { Payment } from "@/interfaces/payment";
+import axios from "axios";
 
 
 
@@ -20,6 +21,16 @@ const Tabs: React.FC = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   const [paymentList, setPaymentList] = useState<Payment[]>([])
+
+
+  useEffect(() => {
+    axios.get('/api/payments', {
+      headers: {
+        'Authorization': 'Bearer ' + localStorage.getItem(btoa('token'))
+      }
+    }).then(res => setPaymentList(res.data))
+
+  }, [])
 
   const handleOpen = () => {
     onOpen();

@@ -1,12 +1,12 @@
 
 
 export const columns = [
-  { name: "Дата", uid: "date", sortable: true },
-  { name: "Контрагент", uid: "group", sortable: true },
-  { name: "Назначение платежа", uid: "type", sortable: true },
-  { name: "Сумма, смн", uid: "summa", sortable: true },
-  { name: "Когда заплатить", uid: "pay", sortable: true },
-  { uid: "purchase", sortable: true },
+  { name: "Дата", uid: "created_at", sortable: true },
+  { name: "Контрагент", uid: "owner", sortable: true },
+  { name: "Назначение платежа", uid: "payment_purpose", sortable: true },
+  { name: "Сумма, смн", uid: "payment_sum", sortable: true },
+  { name: "Когда заплатить", uid: "date", sortable: true },
+  { uid: "status", sortable: true },
 ];
 
 export const tabs = {

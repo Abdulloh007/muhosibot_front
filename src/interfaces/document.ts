@@ -25,5 +25,6 @@ export interface Document {
     counterparty: Counterparty
     counterparty_id: number
     doc_group_id: number
-    docGroup: any
+    docGroup: any,
+    created_at: string
 }

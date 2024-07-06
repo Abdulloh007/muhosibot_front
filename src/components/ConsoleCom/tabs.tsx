@@ -71,9 +71,9 @@ const Tabs: React.FC = () => {
             <div className="py-4 mt-[35px] rounded-md shadow-md bg-white pl-4">
               <div className="flex items-center mb-3">
                 <h1 className="font-medium text-[24px]">Деньги</h1>
-                <span className="ml-[9px] text-[12px] text-linkSm">
+                <Link href="/document/add?type=outgoing&doctype_id=2" className="ml-[9px] text-[12px] text-linkSm">
                   Составить счет
-                </span>
+                </Link>
               </div>
               <div className="mb-[10px]">
                 <p className="mt-[10px]">
@@ -102,9 +102,9 @@ const Tabs: React.FC = () => {
             <div className="pt-4 pb-5 mt-[35px]  rounded-md shadow-md bg-white pl-4">
               <div className="flex items-center mb-3">
                 <h1 className="font-medium text-[24px]">Документы</h1>
-                <span className="ml-[9px] text-[12px] text-linkSm">
+                <Link href="/document" className="ml-[9px] text-[12px] text-linkSm">
                   Составить документ
-                </span>
+                </Link>
               </div>
               <div className="mb-[10px] flex items-center">
                 <FolderIconYellow />

@@ -15,9 +15,10 @@ import {
 } from "../core/addMoneyCom/data";
 import { ExpandMore } from "@mui/icons-material";
 import axios from "axios";
-import {Counterparty} from "@/interfaces/counterpaty";
+import { Counterparty } from "@/interfaces/counterpaty";
 import { useAppSelector } from "@/lib/hooks";
 import { Transaction } from "@/interfaces/transaction";
+import { Document } from "@/interfaces/document";
 
 const SearchInput = {
   inputWrapper: ["border-none", "bg-[#FFFFFF]", "py-0", "h-[33px]", "w-[250px]"],
@@ -32,13 +33,15 @@ const Tabs: React.FC = () => {
   const [operationTypeList, setOperationTypeList] = useState([]);
   const [operationDocTypeList, setOperationDocTypeList] = useState([]);
   const [counterpartiesList, setCounterpartiesList] = useState<Counterparty[]>([]);
+  const [documentsList, setDocumentsList] = useState<Document[]>([]);
 
   const [operation, setOperation] = useState('')
   const [type_id, set_type_id] = useState('')
+  const [hasDocument, setHasDocument] = useState<boolean>(false)
   const [doctype_id, set_doctype_id] = useState('')
   const [resource, setResource] = useState('bank')
   const [title, setTitle] = useState('')
-  const [document_id, set_document_id] = useState(null)
+  const [document_id, set_document_id] = useState('')
   const [details, setDetails] = useState('')
   const [total, setTotal] = useState(0)
   const [total_tax, setTotalTax] = useState(0)
@@ -52,7 +55,7 @@ const Tabs: React.FC = () => {
         'Authorization': 'Bearer ' + localStorage.getItem(btoa('token'))
       }
     }).then(res => setTransactionList(res.data))
-    
+
     axios.get('/api/transaction-types', {
       headers: {
         'Authorization': 'Bearer ' + localStorage.getItem(btoa('token'))
@@ -96,9 +99,22 @@ const Tabs: React.FC = () => {
 
   const users1 = filterItems()
 
+  function logDocs() {
+    axios.get('/api/docs4transac/' + counterparty_id, {
+      headers: {
+        'Authorization': 'Bearer ' + localStorage.getItem(btoa('token'))
+      }
+    }).then(res => {
+      if (res.data.length > 0) {
+        setDocumentsList(res.data)
+        setHasDocument(true)
+      } else { }
+    })
+  }
+
   function submit(e: any) {
     e.preventDefault()
-    axios.post('/api/transactions', {
+    let body = {
       operation,
       type_id,
       doctype_id,
@@ -111,11 +127,13 @@ const Tabs: React.FC = () => {
       counterparty_id,
       date,
       payment_account
-    }, {
+    }
+
+    axios.post('/api/transactions', body, {
       headers: {
         'Authorization': 'Bearer ' + localStorage.getItem(btoa('token'))
       }
-    }).then(res => {onClose(); location.reload()})
+    }).then(res => { onClose(); location.reload() })
   }
 
   return (
@@ -338,6 +356,7 @@ const Tabs: React.FC = () => {
                         defaultItems={counterpartiesList}
                         selectedKey={counterparty_id}
                         onSelectionChange={set_counterparty_id}
+                        onChange={()  => setHasDocument(false)}
                       >
                         {(item) => <AutocompleteItem key={item.id}>{item.full_name}</AutocompleteItem>}
                       </Autocomplete>
@@ -374,6 +393,8 @@ const Tabs: React.FC = () => {
                           aria-label="Платёжное поручение"
                           type="text"
                           className={`${defaultStyleInput} ml-1`}
+                          value={details}
+                          onChange={e => setDetails(e.target.value)}
                         />
                       </div>
                     </label>
@@ -390,6 +411,44 @@ const Tabs: React.FC = () => {
                       ></textarea>
                     </label>
                   </div>
+                  {
+                    hasDocument
+                      ? (<div className="flex w-full items-baseline mb-[18px]">
+                        <label className="w-full flex items-baseline">
+                          <p style={defaultStyleLabel}>Документ</p>
+                          <Select
+                            aria-label="none"
+                            placeholder="Платёжное поручение"
+                            labelPlacement="outside"
+                            className="bg-[#F1F1F1] border-b-2 mr-1 border-[#757575]"
+                            disableSelectorIconRotation
+                            classNames={btnClass}
+                            selectorIcon={<ExpandMore />}
+                            selectedKeys={[document_id]}
+                            onChange={e => set_document_id(e.target.value)}
+                          >
+                            {operation == 'income'
+                              ? documentsList.filter((item: any) => item.document_type.id == 2 ? true : false).map((item: any) => (
+                                <SelectItem
+                                  key={item.id}
+                                >
+                                  {item.title} от {new Date(item.created_at).toLocaleDateString()}
+                                </SelectItem>
+                              ))
+                              : documentsList.filter((item: any) => item.document_type.id == 3 ? true : false).map((item: any) => (
+                                <SelectItem
+                                  key={item.id}
+                                >
+                                  {item.title} от {new Date(item.created_at).toLocaleDateString()}
+                                </SelectItem>
+                              ))
+                          }
+                            
+                          </Select>
+                        </label>
+                      </div>)
+                      : (<p className="text-[#4d89ff]" onClick={e => logDocs()}>Связать документ</p>)
+                  }
                 </ModalBody>
                 <ModalFooter className="justify-start">
                   <div className="flex items-baseline mt-16">

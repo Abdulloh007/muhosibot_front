@@ -2,6 +2,7 @@ import { Counterparty } from "./counterpaty"
 import PaymentAccount from "./payment_account"
 
 export interface Payment {
+    created_at: string
     id: number
     type_id: number
     date: string
