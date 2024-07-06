@@ -55,7 +55,7 @@ const App: React.FC<AppProps> = ({ filterVal, searchVal, rows }) => {
 
     if (filterVal && filterVal !== "Все платежки") {
       filteredRows = filteredRows.filter(
-        (item) => item.payment_purpose.toLowerCase() === filterVal.toLowerCase()
+        (item) => item.status === filterVal
       );
     }
 
@@ -72,12 +72,8 @@ const App: React.FC<AppProps> = ({ filterVal, searchVal, rows }) => {
     onOpen();
   };
 
-  const handleSelectChange: handleChange = (e, id) => {
-    if (isPayed !== e.target.value) {
-      setPayed(e.target.value);
-      setItemId(id)
-      setPayedBool(true)
-    }
+  function handleSelectChange(e: any, id: number) {
+    // e.preventDefault()
   };
 
   return (
@@ -123,7 +119,8 @@ const App: React.FC<AppProps> = ({ filterVal, searchVal, rows }) => {
                                 disableSelectorIconRotation
                                 classNames={btnClass}
                                 selectorIcon={<ExpandMore />}
-                                onChange={(e) => handleSelectChange(e, item.id)}
+                                selectedKeys={[item.status]}
+                                onChange={e => handleSelectChange(e, item.id)}
                               >
                                 {statusList.map((item: any) => (
                                   <SelectItem

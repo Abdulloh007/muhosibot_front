@@ -99,13 +99,13 @@ const Tabs: React.FC = () => {
                 Все
               </button>
               <button
-                className={toggleState === 'не оплачено' ? "tabs active-tabs" : "tabs"}
+                className={toggleState === 'pending' ? "tabs active-tabs" : "tabs"}
                 onClick={() => toggleTab(tabs.secondTab)}
               >
                 Текущие
               </button>
               <button
-                className={toggleState === 'оплачено' ? "tabs active-tabs" : "tabs"}
+                className={toggleState === 'payed' ? "tabs active-tabs" : "tabs"}
                 onClick={() => toggleTab(tabs.thirdTab)}
               >
                 Оплаченные
@@ -121,13 +121,13 @@ const Tabs: React.FC = () => {
             </div>
 
             <div
-              className={toggleState === 'не оплачено' ? "content  active-content" : "content"}
+              className={toggleState === 'pending' ? "content  active-content" : "content"}
             >
               <App rows={paymentList} filterVal={toggleState} searchVal={isSearchValue} />
             </div>
 
             <div
-              className={toggleState === 'оплачено' ? "content  active-content" : "content"}
+              className={toggleState === 'payed' ? "content  active-content" : "content"}
             >
               <App rows={paymentList} filterVal={toggleState} searchVal={isSearchValue} />
             </div>

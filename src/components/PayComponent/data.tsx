@@ -11,8 +11,8 @@ export const columns = [
 
 export const tabs = {
   all: 'Все платежки',
-  secondTab: 'не оплачено',
-  thirdTab: 'оплачено',
+  secondTab: 'pending',
+  thirdTab: 'payed',
 }
 
 type ItemType = {

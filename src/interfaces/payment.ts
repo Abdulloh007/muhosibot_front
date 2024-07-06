@@ -7,6 +7,7 @@ export interface Payment {
     type_id: number
     date: string
     number: string
+    status: string
     payer_account: PaymentAccount
     payment_sum: string
     payment_purpose: string
