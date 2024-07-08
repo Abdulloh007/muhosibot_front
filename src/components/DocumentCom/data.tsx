@@ -3,8 +3,8 @@
 export const columns = [
   { name: "Контрагент", uid: "counterparty", sortable: true },
   { name: "Документы", uid: "document", sortable: true },
-  { name: "Статус", uid: "status", sortable: true },
   { name: "Сумма, смн", uid: "sum", sortable: true },
+  { name: "Статус", uid: "status", sortable: true },
 ];
 
 export const tabs = {

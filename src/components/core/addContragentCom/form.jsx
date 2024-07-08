@@ -78,14 +78,38 @@ function Form() {
         'Authorization': 'Bearer ' + localStorage.getItem(btoa('token'))
       }
     }).then(res => setCategoryList(res.data))
-    if (editId) {
-      axios.get('/api/counterparty/' + editId, {
+
+  }, [])
+
+  useEffect(() => {
+    const id = params.get('editId')
+    if (id) {
+      axios.get('/api/counterparty/' + id, {
         headers: {
           'Authorization': 'Bearer ' + localStorage.getItem(btoa('token'))
         }
-      }).then(res => { })
+      }).then(res => {
+        let { data } = res.data
+
+        set_full_name(data.full_name)
+        set_short_name(data.short_name)
+        set_legal_address(data.legal_address)
+        set_physic_address(data.physic_address)
+        set_site(data.site)
+        set_category_id(data.category_id)
+        set_inn(data.inn)
+        set_kpp(data.kpp)
+        set_contacts(JSON.parse(data.contacts))
+        set_for_sign_docs(data.for_sign_docs)
+        set_by_person(data.by_person)
+        set_passport_details(data.passport_details)
+        set_comment(data.comment)
+        // set_payment_accounts(JSON.parse(data.payment_accounts))
+
+      })
+      setEditId(id)
     }
-  }, [])
+  }, [params])
 
   function onContactsChange(e, id) {
     const { name, value } = e.target
@@ -110,7 +134,7 @@ function Form() {
 
   function handleSubmit(e) {
     e.preventDefault()
-    axios.post('/api/counterparty', {
+    let body = {
       full_name,
       short_name,
       legal_address,
@@ -125,11 +149,22 @@ function Form() {
       passport_details,
       comment,
       payment_accounts: JSON.stringify(payment_accounts),
-    }, {
-      headers: {
-        'Authorization': 'Bearer ' + localStorage.getItem(btoa('token'))
-      }
-    }).then(() => router.push('/contragent'))
+    }
+    if (editId) {
+      axios.patch('/api/counterparty/' + editId, body, {
+        headers: {
+          'Authorization': 'Bearer ' + localStorage.getItem(btoa('token'))
+        }
+      }).then(() => router.push('/contragent'))
+
+    } else {
+
+      axios.post('/api/counterparty', body, {
+        headers: {
+          'Authorization': 'Bearer ' + localStorage.getItem(btoa('token'))
+        }
+      }).then(() => router.push('/contragent'))
+    }
   };
 
 
@@ -444,11 +479,11 @@ function Form() {
                       onChange={e => onPaymentAccountsChange(e, item.id)}
                     />
                     <RadioGroup
-                    aria-label="status"
+                      aria-label="status"
                       value={item.status}
                       name="status"
                       onChange={e => onPaymentAccountsChange(e, item.id)}
-                      >
+                    >
                       <Radio value="active">Действующий</Radio>
                       <Radio value="close">Закрытый</Radio>
                     </RadioGroup>

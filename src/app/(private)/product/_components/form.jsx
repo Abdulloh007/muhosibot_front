@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Checkbox, Button } from "@nextui-org/react";
 import { Select, SelectItem } from "@nextui-org/react";
 import PlusIcon from "@/components/core/Icons/PlusIcon";
@@ -16,11 +16,12 @@ import {
   UnitList,
 } from "@/components/core/addExployerCom/data";
 import { ExpandMore } from "@mui/icons-material";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import axios from "axios";
 
 
 export default function Form() {
+  const [editId, setEditId] = useState(null)
   const [name, setName] = useState('')
   const [description, setDescription] = useState('')
   const [unit, setUnit] = useState('')
@@ -28,23 +29,52 @@ export default function Form() {
   const [balance, setBalance] = useState(null)
 
   const router = useRouter()
+  const params = useSearchParams()
+
+  useEffect(() => {
+    const id = params.get('editId')
+    if (id) {
+      setEditId(id)
+      axios.get('/api/products/' + id, {
+        headers: {
+          'Authorization': 'Bearer ' + localStorage.getItem(btoa('token'))
+        }
+      }).then(res => {
+        setName(res.data.name)
+        setDescription(res.data.description)
+        setUnit(res.data.unit)
+        setPrice(res.data.price)
+        setBalance(res.data.balance)
+      })
+    }
+  }, [params])
 
   function handleSubmit(e) {
     e.preventDefault()
-    console.log(e);
-    axios.post('/api/products', {
+    let body = {
       name,
       description,
       unit,
       price,
       balance
-    }, {
-      headers: {
-        'Authorization': 'Bearer ' + localStorage.getItem(btoa('token'))
-      }
-    }).then(res => {
-      router.push('/product')
-    })
+    }
+    if (editId) {
+      axios.patch('/api/products/' + editId, body, {
+        headers: {
+          'Authorization': 'Bearer ' + localStorage.getItem(btoa('token'))
+        }
+      }).then(res => {
+        router.push('/product')
+      })
+    }else {
+      axios.post('/api/products', body, {
+        headers: {
+          'Authorization': 'Bearer ' + localStorage.getItem(btoa('token'))
+        }
+      }).then(res => {
+        router.push('/product')
+      })
+    }
   };
 
   return (
@@ -56,7 +86,7 @@ export default function Form() {
               <ChevronLeftIcon />
             </Button>
           </Link>
-          <h1 className="font-bold text-[18px] ml-[16px]">Новый Продукт</h1>
+          <h1 className="font-bold text-[18px] ml-[16px]">{editId ? 'Редактирование' : 'Новый Продукт'}</h1>
         </div>
         <form onSubmit={handleSubmit}>
           <div className="flex flex-col items-start justify-center w-1/2">

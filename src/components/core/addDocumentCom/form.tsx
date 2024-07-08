@@ -16,7 +16,7 @@ import { ExpandMore } from '@mui/icons-material';
 import { useRouter, useSearchParams } from 'next/navigation';
 import axios from 'axios';
 import { DocumentType } from '@/interfaces/document';
-import {Counterparty} from '@/interfaces/counterpaty';
+import { Counterparty } from '@/interfaces/counterpaty';
 
 const emptyPos = {
     id: 0,
@@ -42,7 +42,8 @@ function Form() {
     const [group, setGroup] = useState('')
     const [deadline, setDeadline] = useState('')
     const [template, setTemplate] = useState<any>('')
-    const [counterparty_id, set_counterparty_id] = useState<any>(0)
+    const [description, setDescription] = useState<any>('')
+    const [counterparty_id, set_counterparty_id] = useState<any>('')
     const [hasSale, setHasSale] = useState<boolean>(false)
     const [isData, setData] = useState<boolean>(false)
     const [products, setProducs] = useState<any[]>([{ ...emptyPos }])
@@ -68,20 +69,42 @@ function Form() {
                 'Authorization': 'Bearer ' + localStorage.getItem(btoa('token'))
             }
         }).then(res => setCounterpartiesList(res.data))
-        if (editId) {
-            axios.get('/api/documents/' + editId, {
-                headers: {
-                    'Authorization': 'Bearer ' + localStorage.getItem(btoa('token'))
-                }
-            }).then(res => { })
-        }
     }, [])
 
     useEffect(() => {
         const docId = params.get('doctype_id')
         const type = params.get('type')
+        const editId = params.get('editId')
         set_doc_type(parseInt(docId || "0"));
         setType(type || '');
+        if (editId) {
+            axios.get('/api/documents/' + editId, {
+                headers: {
+                    'Authorization': 'Bearer ' + localStorage.getItem(btoa('token'))
+                }
+            }).then(res => {
+                let data = res.data.data
+
+                setEditId(data.id)
+                set_counterparty_id(data.counterparty_id)
+                setGroup(data.doc_group ? data.doc_group.title : '')
+                setDoctype(data.document_type)
+                setProducs(data.products.map((item: any) => {
+                    return {
+                        id: item.id,
+                        product_id: item.id,
+                        name: item.name,
+                        price: item.price,
+                        count: item.pivot.count,
+                        sale: item.pivot.sale,
+                        unit: item.unit,
+                        total: (item.price * item.pivot.count) - item.pivot.sale
+                    }
+                }))
+                setDocSum(data.sum)
+
+            })
+        }
 
     }, [params])
 
@@ -91,7 +114,7 @@ function Form() {
 
     function handleSubmit(e: any) {
         e.preventDefault();
-        axios.post('/api/documents', {
+        let body = {
             title: doctype?.title,
             doc_type: doctype?.id,
             template: 'ыва',
@@ -103,7 +126,8 @@ function Form() {
             status: doctype?.type === 'sign' ? 'Не подписан' : doctype?.type === 'pay' ? 'Ждет оплаты' : 'В работе',
             products: products,
             group
-        }, {
+        }
+        axios.post('/api/documents', body, {
             headers: {
                 'Authorization': 'Bearer ' + localStorage.getItem(btoa('token'))
             }
@@ -149,7 +173,7 @@ function Form() {
                             <ChevronLeftIcon />
                         </Button>
                     </Link>
-                    <h1 className='font-bold text-[24px] ml-[16px]'>Создание {doctype?.title} № </h1>
+                    <h1 className='font-bold text-[24px] ml-[16px]'>{editId ? 'Редактирование' : 'Создание'} {doctype?.title} № </h1>
                     <input style={{ width: 100 }} placeholder='1' type="text" className={`${defaultStyleInput} ml-2`} />
                     <h3 className='font-bold text-[24px] ml-[10px]  mr-[10px]'>От</h3>
                     <input style={{ width: 150 }} type="date" className={defaultStyleInput} />

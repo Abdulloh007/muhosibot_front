@@ -6,23 +6,11 @@ import CheckMarkICon from '@/components/core/Icons/CheckMarkIcon';
 // import {valueChangeGrey, valueChangeYellow} from './data'
 
 interface StatusPropsDoc {
-    status: {
-        SignDoc: [
-            { txt: string },
-            { txt: string },
-            { txt: string },
-        ];
-        SignDocPay: [
-            { txt: string },
-            { txt: string },
-            { txt: string },
-            { txt: string },
-        ];
-    };
+    status: string;
+    statusList: any[];
 }
 
-const StatusDoc: React.FC<StatusPropsDoc> = ({ status }) => {
-    const { SignDoc, SignDocPay } = status;
+const StatusDoc: React.FC<StatusPropsDoc> = ({ status, statusList }) => {
 
     return (
         <div >
@@ -33,56 +21,16 @@ const StatusDoc: React.FC<StatusPropsDoc> = ({ status }) => {
                 disableSelectorIconRotation
                 classNames={btnClass}
                 selectorIcon={<ExpandMore />}
+                selectedKeys={[status]}
             >
-                {SignDoc.map((item) => (
+                {statusList.map((item) => (
                     <SelectItem
-                        key={item.txt.toLocaleLowerCase()}
-                        value={item.txt.toLocaleLowerCase()}
+                        key={item}
                     >
-                        {item.txt}
+                        {item}
                     </SelectItem>
                 ))}
             </Select>
-            <div className='mt-3'>
-                <Select
-                    placeholder="Не подписан"
-                    labelPlacement="outside"
-                    className='bg-[#FFF] w-36'
-                    disableSelectorIconRotation
-                    classNames={btnClass}
-                    selectorIcon={(SignDocPay[0].txt === 'Не подписан' && SignDocPay[1].txt === 'Не оплачен') ? <CheckMarkICon /> : <ExpandMore />}
-                >
-                    {SignDocPay.map((item) => (
-                        <SelectItem
-                            key={item.txt.toLocaleLowerCase()}
-                            value={item.txt.toLocaleLowerCase()}
-                            className={(item.txt === 'Не подписан' || item.txt === 'Не оплачен') ? `text-[#FFB904]` : `text-[#5C5C5C]`}
-                        >
-                            {item.txt}
-                        </SelectItem>
-                    ))}
-                </Select>
-            </div>
-            <div className='mt-3'>
-                <Select
-                    placeholder="Подписан"
-                    labelPlacement="outside"
-                    className='bg-[#FFF] w-36'
-                    disableSelectorIconRotation
-                    classNames={btnClass}
-                    selectorIcon={(SignDocPay[0].txt === 'Не подписан' || SignDocPay[1].txt === 'Не оплачен') ? <CheckMarkICon /> : <ExpandMore />}
-                >
-                    {SignDocPay.map((item) => (
-                        <SelectItem
-                            key={item.txt.toLocaleLowerCase()}
-                            value={item.txt.toLocaleLowerCase()}
-                            className={(item.txt === 'Не подписан' || item.txt === 'Не оплачен') ? `text-[#FFB904]` : `text-[#5C5C5C]`}
-                        >
-                            {item.txt}
-                        </SelectItem>
-                    ))}
-                </Select>
-            </div>
         </div>
     );
 };

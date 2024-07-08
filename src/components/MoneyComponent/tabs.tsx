@@ -136,6 +136,27 @@ const Tabs: React.FC = () => {
     }).then(res => { onClose(); location.reload() })
   }
 
+  function editTr(id: number) {
+    axios.get('/api/transactions/ ' + id, {
+      headers: {
+        'Authorization': 'Bearer ' + localStorage.getItem(btoa('token'))
+      }
+    }).then(res => {
+      let {data} = res
+      setOperation(data.operation)
+      set_type_id(data.type_id)
+      set_doctype_id(data.doctype_id)
+      setTotal(data.total)
+      setTotalTax(data.total_tax)
+      setDetails(data.details)
+      set_counterparty_id(data.counterparty_id)
+      set_document_id(data.document_id)
+      setDocumentsList(data.document ? [data.document] : [])
+      setHasDocument(data.document ? true : false)
+    })
+    onOpen()
+  }
+
   return (
     <>
       <div className="container">
@@ -206,19 +227,19 @@ const Tabs: React.FC = () => {
               <div
                 className={`${toggleState === 'Все операции' ? "content  active-content" : "content"}`}
               >
-                <App rows={transactionList} filterVal={toggleState} searchVal={isSearchValue} />
+                <App action={editTr} rows={transactionList} filterVal={toggleState} searchVal={isSearchValue} />
               </div>
 
               <div
                 className={toggleState === 'Поступления' ? "content  active-content" : "content"}
               >
-                <App rows={transactionList} filterVal={"income"} searchVal={isSearchValue} />
+                <App action={editTr} rows={transactionList} filterVal={"income"} searchVal={isSearchValue} />
               </div>
 
               <div
                 className={toggleState === 'Списания' ? "content  active-content" : "content"}
               >
-                <App rows={transactionList} filterVal={"payment"} searchVal={isSearchValue} />
+                <App action={editTr} rows={transactionList} filterVal={"payment"} searchVal={isSearchValue} />
               </div>
             </div>
           </div>

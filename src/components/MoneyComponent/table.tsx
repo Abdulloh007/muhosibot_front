@@ -7,14 +7,15 @@ import { Transaction } from "@/interfaces/transaction";
 interface AppProps {
   filterVal: string,
   searchVal: string,
-  rows: Transaction[]
+  rows: Transaction[],
+  action: Function
 }
 
 const tableClassName = {
   th: ["bg-transparent", "text-default-500", "border-b", "border-divider"],
 }
 
-const App: React.FC<AppProps> = ({ filterVal, searchVal, rows }) => {
+const App: React.FC<AppProps> = ({ filterVal, searchVal, rows, action }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
 
@@ -44,7 +45,7 @@ const App: React.FC<AppProps> = ({ filterVal, searchVal, rows }) => {
       <Table
         aria-label="Rows actions table example with dynamic content"
         selectionMode="multiple"
-        onRowAction={handleOpen}
+        onRowAction={key => action(key)}
         shadow="none"
         classNames={tableClassName}
         width={1200}

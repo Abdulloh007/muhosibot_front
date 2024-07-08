@@ -1,6 +1,7 @@
 import { Table, TableHeader, TableColumn, TableBody, TableRow, TableCell, getKeyValue } from "@nextui-org/react";
 import { columns, users } from "./data";
 import {Counterparty} from "@/interfaces/counterpaty";
+import { useRouter } from "next/navigation";
 
 
 interface AppProps {
@@ -14,6 +15,9 @@ const tableClassName = {
 }
 
 const App: React.FC<AppProps> = ({filterVal, searchVal, rows}) => {
+  
+  const router = useRouter()
+
   const filterItems = () => {
     let filteredRows = [...rows];
 
@@ -37,7 +41,7 @@ const App: React.FC<AppProps> = ({filterVal, searchVal, rows}) => {
       <Table
         aria-label="Rows actions table example with dynamic content"
         selectionMode="multiple"
-        onRowAction={(key) => alert(`Opening item ${key}...`)}
+        onRowAction={(key) => router.push('/contragent/add?editId=' + key)}
         shadow="none"
         classNames={tableClassName}
         width={1200}

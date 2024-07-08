@@ -5,6 +5,7 @@ import TableDoc from "@/components/DocumentCom/tableDoc"
 import StatusDoc from '@/components/DocumentCom/statusDoc'
 import SummaDoc from '@/components/DocumentCom/summaDoc'
 import { Document } from "@/interfaces/document";
+import { useRouter } from "next/navigation";
 
 
 interface AppProps {
@@ -18,6 +19,8 @@ const tableClassName = {
 }
 
 const App: React.FC<AppProps> = ({ filterVal, searchVal, rows }) => {
+  const router = useRouter()
+  
   const filterItems = () => {
     let filteredRows = rows;
 
@@ -41,7 +44,7 @@ const App: React.FC<AppProps> = ({ filterVal, searchVal, rows }) => {
       <Table
         aria-label="Rows actions table example with dynamic content"
         selectionMode="single"
-        onRowAction={(key) => alert(`Opening item ${key}...`)}
+        onRowAction={(key) => router.push('/document/add?editId=' + key)}
         shadow="none"
         classNames={tableClassName}
         width={1200}
@@ -62,6 +65,8 @@ const App: React.FC<AppProps> = ({ filterVal, searchVal, rows }) => {
                       <TableDoc document={item} />
                     ) : columnKey === 'counterparty' ? (
                       <>{item.counterparty?.full_name}</>
+                    ) : columnKey === 'status' ? (
+                      <StatusDoc statusList={[item.status]} status={item.status} />
                     ) : (
                       getKeyValue(item, columnKey)
                     )
