@@ -1,5 +1,5 @@
 import React from "react";
-import { Tabs, Tab, RadioGroup, Radio, Button } from "@nextui-org/react";
+import { Tabs, Tab, RadioGroup, Radio, Button, Input } from "@nextui-org/react";
 import PenIcon from "@/components/core/Icons/PenIcon";
 import { useAppSelector } from "@/lib/hooks";
 
@@ -10,7 +10,7 @@ const TabsSelect = {
 
 const TabsCom = () => {
 
-  function exitApp () {
+  function exitApp() {
     localStorage.clear();
     location.reload()
   }
@@ -88,6 +88,35 @@ const TabsCom = () => {
             <Tab key="tarif" title="Тарифы и оплата" />
             <Tab key="adaptive" title="Многопользовательский режим" />
             {/* <Tab key="copy" title="Копия данных" /> */}
+            <Tab key="accouting" title="Настройки учёта" >
+
+              <div className="pt-[25px]">
+                <div className="flex mt-[15px]">
+                  <p style={{ width: 250 }}>Система налооблажения</p>
+                  <div className="flex ">
+                    <p className="ml-[100px]">{userData.primary_organization.tax_system}</p>
+                    <div className="flex items-center ml-[10px] text-linkSm">
+                      <PenIcon />
+                      Изменить СНО
+                    </div>
+                  </div>
+                </div>
+                <div className="mt-[40px] mb-[20px]">
+                  <h1 className="font-semibold text-[18px]">Настройки ККМ</h1>
+                  <Input className={'mt-[20px] w-[250px]'} type="text" label="Сервер" />
+                  <Input className={'mt-[20px] w-[250px]'} type="number" label="Порт" />
+                </div>
+                <div className="w-full ">
+                  <Button variant="ghost" color="success" >Сохранить</Button>
+                </div>
+              </div>
+              <div className="mt-[40px] mb-[40px]">
+                <h1 className="font-semibold text-[18px] mb-[20px]">Операции ККМ</h1>
+                <Button variant="flat" color="success" className="mr-3">Открыть Смену</Button>
+                <Button variant="flat" className="mr-3">X отчёт</Button>
+                <Button variant="flat" color="success" >Закрыть Смену</Button>
+              </div>
+            </Tab>
           </Tabs>
         </div>
       </div>

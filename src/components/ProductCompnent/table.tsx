@@ -1,5 +1,5 @@
 import { Table, TableHeader, TableColumn, TableBody, TableRow, TableCell, getKeyValue } from "@nextui-org/react";
-import { columns, users } from "./data";
+import { columns } from "./data";
 import { useRouter } from "next/navigation";
 
 
@@ -54,11 +54,19 @@ const App: React.FC<AppProps> = ({filterVal, searchVal, rows}) => {
           {(item) => (
             <TableRow className='border-b-1' key={item.id}>
               {(columnKey) => {
-                return (
-                  <TableCell className={`pb-5 pt-6 `}>
-                    {getKeyValue(item, columnKey)}
-                  </TableCell>
-                )
+                if(columnKey == 'sum') {
+                  return (
+                    <TableCell className={`pb-5 pt-6 `}>
+                      {item.balance * parseFloat(item.price)}
+                    </TableCell>
+                  )
+                }else {
+                  return (
+                    <TableCell className={`pb-5 pt-6 `}>
+                      {getKeyValue(item, columnKey)}
+                    </TableCell>
+                  )
+                }
               }}
             </TableRow>
           )}

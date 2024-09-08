@@ -25,6 +25,7 @@ export default function Form() {
   const [name, setName] = useState('')
   const [description, setDescription] = useState('')
   const [unit, setUnit] = useState('')
+  const [type, setType] = useState('1')
   const [price, setPrice] = useState(null)
   const [balance, setBalance] = useState(null)
 
@@ -55,6 +56,7 @@ export default function Form() {
       name,
       description,
       unit,
+      type,
       price,
       balance
     }
@@ -151,6 +153,36 @@ export default function Form() {
                 />
               </label>
             </div> */}
+            <div className="flex w-full items-baseline mb-[14px]">
+              <label className="flex w-full items-baseline">
+                <p style={defaultStyleLabel}>Тип</p>
+                <div style={defaultStyleDiv}>
+                  <Select
+                    placeholder=""
+                    aria-label=""
+                    labelPlacement="outside"
+                    className="bg-[#F1F1F1] border-b-2 border-[#757575]"
+                    disableSelectorIconRotation
+                    classNames={btnClass}
+                    selectorIcon={<ExpandMore />}
+                    onChange={e => setType(e.target.value)}
+                    selectedKeys={[type]}
+                    isRequired
+                  >
+                      <SelectItem
+                        key={1}
+                      >
+                        Товар
+                      </SelectItem>
+                      <SelectItem
+                        key={2}
+                      >
+                        Услуга
+                      </SelectItem>
+                  </Select>
+                </div>
+              </label>
+            </div>
             <div className="flex w-full items-baseline mb-[14px]">
               <label className="flex w-full items-baseline">
                 <p style={defaultStyleLabel}>Единица измерения</p>

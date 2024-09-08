@@ -1,7 +1,7 @@
 'use client';
 import React, { useEffect, useState } from "react";
 import App from "./table";
-import { tabs, users } from "./data";
+import { tabs } from "./data";
 import { Button, Input } from '@nextui-org/react';
 import ExportComponent from '@/components/core/AllComponent/ExportComponent'
 import PlusIcon from '@/components/core/Icons/PlusIcon';

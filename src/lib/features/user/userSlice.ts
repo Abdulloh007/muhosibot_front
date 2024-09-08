@@ -20,6 +20,19 @@ const initialState: UserMain = {
     code_phrase: null,
     devices: null,
     organizations: [],
+    primary_organization: {
+        id: 0,
+        title: '',
+        inn: null,
+        kpp: null,
+        tax_system: '',
+        legal_address: null,
+        physic_address: null,
+        owner_id: 0,
+        type: '',
+        contacts: null,
+        status: ''
+    },
     incomes_total: 0,
     outgoing_total: 0
 }
@@ -44,6 +57,7 @@ export const userSlice = createSlice({
             state.phone = action.payload.phone
             state.email = action.payload.email
             state.organizations = action.payload.organizations
+            state.primary_organization = action.payload.primary_organization
             state.incomes_total = action.payload.incomes_total
             state.outgoing_total = action.payload.outgoing_total
         },

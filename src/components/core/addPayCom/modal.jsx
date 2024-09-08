@@ -84,17 +84,15 @@ export default function PayModalApp({ isOpen, onOpen, onClose, editID = null }) 
                 <ModalBody>
                   <div className="flex w-full  items-baseline mb-[18px]">
                     <label className="flex w-full items-baseline">
-                      <div>
-                        <p style={defaultStyleLabel}>Тип операции</p>
-                      </div>
-                      <div style={defaultStyleDiv}>
+                      <p style={defaultStyleLabel}>Тип операции</p>
+
+                      
                         <Select
                           aria-label="none"
                           placeholder="Оплата товаров и услуг"
                           labelPlacement="outside"
                           className={"bg-[#F1F1F1] border-b-2 border-[#757575] "}
                           disableSelectorIconRotation
-                          classNames={btnClass}
                           selectorIcon={<ExpandMore />}
                           selectedKeys={[type_id]}
                           onChange={e => set_type_id(e.target.value)}
@@ -107,7 +105,7 @@ export default function PayModalApp({ isOpen, onOpen, onClose, editID = null }) 
                             </SelectItem>
                           ))}
                         </Select>
-                      </div>
+                      
                     </label>
                   </div>
                   <div className="flex w-full items-baseline mb-[18px]">

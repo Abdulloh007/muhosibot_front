@@ -404,6 +404,19 @@ function Form() {
                                 </Button>
                             </Link>
                         </div>
+                        {
+                            doctype?.hasInvoice
+                                ? (<div className="ml-2">
+                                    <Button
+                                        color='warning'
+                                        className="py-[10px] px-[25px] rounded-lg font-semibold"
+                                        size="md"
+                                    >
+                                        Пробить Чек
+                                    </Button>
+                                </div>)
+                                : (<></>)
+                        }
                     </div>
                 </form>
             </div>
