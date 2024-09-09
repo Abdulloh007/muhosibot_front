@@ -27,7 +27,7 @@ export default function Container() {
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
+                                {/* <tr>
                                     <td className="border border-slate-700 ...">Касса, 50</td>
                                     <td className="border border-slate-700 ...">0</td>
                                     <td className="border border-slate-700 ...">0</td>
@@ -35,7 +35,7 @@ export default function Container() {
                                     <td className="border border-slate-700 ...">200</td>
                                     <td className="border border-slate-700 ...">300</td>
                                     <td className="border border-slate-700 ...">0</td>
-                                </tr>
+                                </tr> */}
                             </tbody>
                         </table>
                     </div>
