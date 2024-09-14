@@ -127,11 +127,21 @@ function Form() {
             products: products,
             group
         }
-        axios.post('/api/documents', body, {
-            headers: {
-                'Authorization': 'Bearer ' + localStorage.getItem(btoa('token'))
-            }
-        }).then(() => router.push('/document'))
+        
+        if (editId) {
+            axios.patch('/api/documents/' + editId, body, {
+                headers: {
+                    'Authorization': 'Bearer ' + localStorage.getItem(btoa('token'))
+                }
+            }).then(() => router.push('/document'))
+        }else{
+            axios.post('/api/documents', body, {
+                headers: {
+                    'Authorization': 'Bearer ' + localStorage.getItem(btoa('token'))
+                }
+            }).then(() => router.push('/document'))
+        }
+
     }
 
     function onProductChange(e: any, id: any) {
