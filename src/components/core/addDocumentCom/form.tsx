@@ -127,8 +127,7 @@ function Form() {
             products: products,
             group
         }
-        
-        if (editId) {
+        if(editId){
             axios.patch('/api/documents/' + editId, body, {
                 headers: {
                     'Authorization': 'Bearer ' + localStorage.getItem(btoa('token'))
@@ -141,7 +140,6 @@ function Form() {
                 }
             }).then(() => router.push('/document'))
         }
-
     }
 
     function onProductChange(e: any, id: any) {
