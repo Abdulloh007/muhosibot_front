@@ -116,6 +116,7 @@ function Form() {
         e.preventDefault();
         let body = {
             title: doctype?.title,
+            description: description,
             doc_type: doctype?.id,
             template: 'ыва',
             with_sign_seal: false,
@@ -125,7 +126,7 @@ function Form() {
             sum: docSum,
             status: doctype?.type === 'sign' ? 'Не подписан' : doctype?.type === 'pay' ? 'Ждет оплаты' : 'В работе',
             products: products,
-            group
+            doc_group_id : 1
         }
         if(editId){
             axios.patch('/api/documents/' + editId, body, {
@@ -286,7 +287,7 @@ function Form() {
                         <div className='flex w-full items-baseline mb-[18px]'>
                             <label className='w-full flex items-baseline'>
                                 <p style={defaultStyleLabel}>Комментарий</p>
-                                <textarea placeholder='Введите название или ИНН' style={defaultStyleDiv} className={`${defaultStyleInput} min-h-[60px] h-[60px]`}></textarea>
+                                <textarea placeholder='Введите название или ИНН' onChange={e => setDescription(e.target.value)} style={defaultStyleDiv} className={`${defaultStyleInput} min-h-[60px] h-[60px]`}></textarea>
                             </label>
                         </div>
                     </div>
