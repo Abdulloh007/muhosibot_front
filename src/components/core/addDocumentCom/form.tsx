@@ -63,7 +63,10 @@ function Form() {
             headers: {
                 'Authorization': 'Bearer ' + localStorage.getItem(btoa('token'))
             }
-        }).then(res => setGroupList(res.data))
+        }).then(res => {
+            setGroupList(res.data),
+            console.log("group->",groupList)
+        })
 
         axios.get('/api/products', {
             headers: {
@@ -260,9 +263,9 @@ function Form() {
                                     autoComplete='off'
                                 />
                                 <datalist id="groups">
-                                    {groupList.map((groupItem, index) => (
+                                    {/* {groupList.map((groupItem, index) => (
                                         <option key={index} value={groupItem} />
-                                    ))}
+                                    ))} */}
                                 </datalist>
                             </label>
                         </div>
