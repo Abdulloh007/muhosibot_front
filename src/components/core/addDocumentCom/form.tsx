@@ -31,7 +31,7 @@ const emptyPos = {
 
 function Form() {
     const [doctypeList, setDoctypeList] = useState<DocumentType[]>([]);
-    const [groupList, setGroupList] = useState([]);
+    const [groupList, setGroupList] = useState<any[]>([]);
     const [productList, setProductList] = useState<any[]>([]);
     const [counterpartiesList, setCounterpartiesList] = useState<Counterparty[]>([]);
     const [templateList, setTemplateList] = useState<any[]>([]);
