@@ -24,7 +24,7 @@ const TabsCom = () => {
         });
         setDoctypeList(doctypeResponse.data);
 
-        const docsResponse = await axios.get('/api/documents/1', {
+        const docsResponse = await axios.get('/api/documents/status/1', {
           headers: {
             'Authorization': 'Bearer ' + localStorage.getItem(btoa('token'))
           }
