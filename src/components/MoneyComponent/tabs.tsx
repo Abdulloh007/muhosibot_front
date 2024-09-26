@@ -34,7 +34,8 @@ const Tabs: React.FC = () => {
   const [operationDocTypeList, setOperationDocTypeList] = useState([]);
   const [counterpartiesList, setCounterpartiesList] = useState<Counterparty[]>([]);
   const [documentsList, setDocumentsList] = useState<Document[]>([]);
-
+  
+  const [editId, setEditId] = useState<null | string>(null)
   const [operation, setOperation] = useState('')
   const [type_id, set_type_id] = useState('')
   const [hasDocument, setHasDocument] = useState<boolean>(false)
@@ -129,11 +130,19 @@ const Tabs: React.FC = () => {
       payment_account
     }
 
-    axios.post('/api/transactions', body, {
-      headers: {
-        'Authorization': 'Bearer ' + localStorage.getItem(btoa('token'))
-      }
-    }).then(res => { onClose(); location.reload() })
+    if(editId){
+      axios.patch('/api/transactions/' + editId, body, {
+        headers: {
+          'Authorization': 'Bearer ' + localStorage.getItem(btoa('token'))
+        }
+      }).then(res => { onClose(); location.reload() })
+    }else{
+      axios.post('/api/transactions', body, {
+        headers: {
+          'Authorization': 'Bearer ' + localStorage.getItem(btoa('token'))
+        }
+      }).then(res => { onClose(); location.reload() })
+    }
   }
 
   function editTr(id: number) {
@@ -143,6 +152,7 @@ const Tabs: React.FC = () => {
       }
     }).then(res => {
       let {data} = res
+      setEditId(data.id)
       setOperation(data.operation)
       set_type_id(data.type_id)
       set_doctype_id(data.doctype_id)

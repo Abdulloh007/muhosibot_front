@@ -14,7 +14,7 @@ import {
 } from './data';
 import { ExpandMore } from '@mui/icons-material';
 import { useRouter, useSearchParams } from 'next/navigation';
-import axios from 'axios';
+import axios, { AxiosResponse } from 'axios';
 import { DocumentType } from '@/interfaces/document';
 import { Counterparty } from '@/interfaces/counterpaty';
 
@@ -31,6 +31,7 @@ const emptyPos = {
 
 function Form() {
     const [doctypeList, setDoctypeList] = useState<DocumentType[]>([]);
+    const [groupList, setGroupList] = useState([]);
     const [productList, setProductList] = useState<any[]>([]);
     const [counterpartiesList, setCounterpartiesList] = useState<Counterparty[]>([]);
     const [templateList, setTemplateList] = useState<any[]>([]);
@@ -57,6 +58,12 @@ function Form() {
                 'Authorization': 'Bearer ' + localStorage.getItem(btoa('token'))
             }
         }).then(res => setDoctypeList(res.data))
+
+        axios.get('/api/docgroups', {
+            headers: {
+                'Authorization': 'Bearer ' + localStorage.getItem(btoa('token'))
+            }
+        }).then(res => setGroupList(res.data))
 
         axios.get('/api/products', {
             headers: {
@@ -116,6 +123,7 @@ function Form() {
         e.preventDefault();
         let body = {
             title: doctype?.title,
+            description: description,
             doc_type: doctype?.id,
             template: 'ыва',
             with_sign_seal: false,
@@ -125,13 +133,21 @@ function Form() {
             sum: docSum,
             status: doctype?.type === 'sign' ? 'Не подписан' : doctype?.type === 'pay' ? 'Ждет оплаты' : 'В работе',
             products: products,
-            group
+            group: group, 
         }
-        axios.post('/api/documents', body, {
-            headers: {
-                'Authorization': 'Bearer ' + localStorage.getItem(btoa('token'))
-            }
-        }).then(() => router.push('/document'))
+        if(editId){
+            axios.patch('/api/documents/' + editId, body, {
+                headers: {
+                    'Authorization': 'Bearer ' + localStorage.getItem(btoa('token'))
+                }
+            }).then(() => router.push('/document'))
+        }else{
+            axios.post('/api/documents', body, {
+                headers: {
+                    'Authorization': 'Bearer ' + localStorage.getItem(btoa('token'))
+                }
+            }).then(() => router.push('/document'))
+        }
     }
 
     function onProductChange(e: any, id: any) {
@@ -239,8 +255,15 @@ function Form() {
                                     placeholder='Введите название или ИНН'
                                     className={defaultStyleInput}
                                     value={group}
+                                    list='groups'
                                     onChange={e => setGroup(e.target.value)}
+                                    autoComplete='off'
                                 />
+                                <datalist id="groups">
+                                    {groupList.map((groupItem, index) => (
+                                        <option key={index} value={groupItem} />
+                                    ))}
+                                </datalist>
                             </label>
                         </div>
                         <div className="flex w-full  items-baseline mb-[14px]">
@@ -278,7 +301,7 @@ function Form() {
                         <div className='flex w-full items-baseline mb-[18px]'>
                             <label className='w-full flex items-baseline'>
                                 <p style={defaultStyleLabel}>Комментарий</p>
-                                <textarea placeholder='Введите название или ИНН' style={defaultStyleDiv} className={`${defaultStyleInput} min-h-[60px] h-[60px]`}></textarea>
+                                <textarea placeholder='Введите название или ИНН' onChange={e => setDescription(e.target.value)} style={defaultStyleDiv} className={`${defaultStyleInput} min-h-[60px] h-[60px]`}></textarea>
                             </label>
                         </div>
                     </div>

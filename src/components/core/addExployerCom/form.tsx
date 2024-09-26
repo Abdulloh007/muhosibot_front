@@ -38,6 +38,7 @@ const Form = () => {
     const [physic_address, set_physic_address] = useState('')
     const [inn, setINN] = useState('')
     const [payment_method, set_payment_method] = useState('')
+    const [salary, setSalary] = useState('0')
     const orgId = useAppSelector(state => state.profile.organizations[0].id)
     const dispatch = useAppDispatch()
     const router = useRouter()
@@ -71,6 +72,7 @@ const Form = () => {
                 set_physic_address(stuff.physic_address)
                 setINN(stuff.inn)
                 set_payment_method(stuff.payment_method)
+                setSalary(stuff.salary)
                 
             }).catch(error => dispatch(addToList({ color: 'danger', text: error.message })))
         }
@@ -95,6 +97,7 @@ const Form = () => {
             physic_address,
             inn,
             payment_method,
+            salary,
             organization_id: orgId
         }, {
             headers: {
@@ -217,6 +220,14 @@ const Form = () => {
                                 <input type="text" placeholder='Дней' className={`${defaultStyleInput}`} /> */}
                             </div>
                         </div>
+                        <div className='flex items-baseline mb-[14px]'>
+                            <label className='flex w-full items-baseline'>
+                                <p style={defaultStyleLabel}>Оклад сотрудника</p>
+                                <div style={defaultStyleDiv} className='flex'>
+                                    <input type='number' step="any" min="0" value={salary} onChange={(e: any) => setSalary(e.target.value)} placeholder='' className={`${defaultStyleInput} mr-5`} />
+                                </div>
+                            </label>
+                        </div>
                     </div>
                     <div className='flex flex-col items-start mt-[70px]  justify-center w-1/2'>
                         <h1 className='font-bold text-[18px] mb-5'>Паспорт</h1>
@@ -270,6 +281,7 @@ const Form = () => {
                     </div>
                     <div className='flex flex-col items-start mt-[70px]  justify-center w-1/2'>
                         <h1 className='font-bold text-[18px] mb-5'>Способ выплат</h1>
+                        
                         <div className='flex w-full items-baseline mb-[14px]'>
                             <label className='flex w-full items-baseline'>
                                 <p style={defaultStyleLabel}>Способ выплат</p>

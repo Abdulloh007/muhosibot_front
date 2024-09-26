@@ -6,6 +6,7 @@ import StatusDoc from '@/components/DocumentCom/statusDoc'
 import SummaDoc from '@/components/DocumentCom/summaDoc'
 import { Document } from "@/interfaces/document";
 import { useRouter } from "next/navigation";
+import { isNumber } from "chart.js/helpers";
 
 
 interface AppProps {
@@ -31,9 +32,20 @@ const App: React.FC<AppProps> = ({ filterVal, searchVal, rows }) => {
     }
 
     if (searchVal) {
-      filteredRows = filteredRows.filter((doc) =>
-        doc.title.toLowerCase().includes(searchVal.toLowerCase())
-      );
+      // filteredRows = filteredRows.filter((doc) =>
+      //   doc.title.toLowerCase().includes(searchVal.toLowerCase())
+      // );
+      if(isNumber(searchVal)){
+        filteredRows = filteredRows.filter((doc) =>
+          doc.sum.toString().includes(searchVal) 
+        );
+      }else{
+        filteredRows = filteredRows.filter((doc) =>
+          doc.title.toString().includes(searchVal)
+        );
+      }
+
+      
     }
 
     return filteredRows;
@@ -64,6 +76,7 @@ const App: React.FC<AppProps> = ({ filterVal, searchVal, rows }) => {
                     {columnKey === 'document' ? (
                       <TableDoc document={item} />
                     ) : columnKey === 'counterparty' ? (
+                      // <>{item.counterparty?.full_name}</>
                       <>{item.counterparty?.full_name}</>
                     ) : columnKey === 'status' ? (
                       <StatusDoc statusList={[item.status]} status={item.status} />

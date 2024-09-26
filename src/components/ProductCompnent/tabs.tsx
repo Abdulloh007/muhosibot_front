@@ -17,17 +17,27 @@ const SearchInput = {
 const Tabs: React.FC = () => {
   const [toggleState, setToggleState] = useState<string>('Все Товары');
   const [isSearchValue, setSearchValue] = useState<string>('');
-  const [productList, setProductList] = useState<any[]>([]);
+  let [productList, setProductList] = useState<any[]>([]);
+  let [filtered, setFiltered] = useState<any[]>([]);
 
   useEffect(() => {
     axios.get('/api/products', {
       headers: {
           'Authorization': 'Bearer ' + localStorage.getItem(btoa('token'))
       }
-  }).then(res => setProductList(res.data))
+  }).then(res => { setProductList(res.data); setFiltered(res.data) })
   }, [])
 
   const toggleTab = (index: string) => {
+    let filtered = [];
+    if (index === "Товары") {
+      setFiltered(productList.filter((val) => val.type === "Товар"))
+    } else if (index === "Услуги") {
+      setFiltered(productList.filter((val) => val.type === "Услуга"))
+    } else if (index === "Все Товары") {
+      setFiltered(productList)
+    }
+    
     setToggleState(index);
   };
 
@@ -115,13 +125,13 @@ const Tabs: React.FC = () => {
             <div
               className={toggleState === 'Товары' ? "content  active-content" : "content"}
             >
-              <App rows={productList} filterVal={toggleState} searchVal={isSearchValue} />
+              <App rows={filtered} filterVal={toggleState} searchVal={isSearchValue} />
             </div>
 
             <div
               className={toggleState === 'Услуги' ? "content  active-content" : "content"}
             >
-              <App rows={productList} filterVal={toggleState} searchVal={isSearchValue} />
+              <App rows={filtered} filterVal={toggleState} searchVal={isSearchValue} />
             </div>
           </div>
         </div>
