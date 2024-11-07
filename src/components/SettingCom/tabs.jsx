@@ -13,6 +13,7 @@ const TabsSelect = {
 const TabsCom = () => {
   const [doctypeList, setDoctypeList] = useState([]); // Removed DocumentType[]
   const [docs, setDocs] = useState([]); // Removed Document[]
+  const [currency, setCurrency] = useState([]); // Removed Document[]
 
   useEffect(() => {
     const fetchData = async () => {
@@ -24,12 +25,19 @@ const TabsCom = () => {
         });
         setDoctypeList(doctypeResponse.data);
 
+        const currencyResponse = await axios.get('/api/currency', {
+          headers: {
+            'Authorization': 'Bearer ' + localStorage.getItem(btoa('token'))
+          }
+        });
+        setCurrency(currencyResponse.data);
+
         const docsResponse = await axios.get('/api/documents/status/1', {
           headers: {
             'Authorization': 'Bearer ' + localStorage.getItem(btoa('token'))
           }
         });
-        setDocs(docsResponse.data);
+        setDocs(docsResponse.data)
       } catch (error) {
         console.error('Error fetching data:', error);
       }
@@ -148,6 +156,29 @@ const TabsCom = () => {
               <div className="mt-[40px] mb-[40px]">
                 <h1 className="font-semibold text-[18px] mb-[20px]">Удаленные документы</h1>
                 <App rows={docs} />
+              </div>
+            </Tab>
+            <Tab key="currency" title="Валюта">
+              <div className="mt-[40px] mb-[40px]">
+                {/* <h1 className="font-semibold text-[18px] mb-[20px]">Валюта</h1> */}
+                <div className="w-[95%] mx-auto">
+                  <div className="flex w-full justify-around py-3 border-b-[2px] border-t border-b-[#a774ff] border-t-[#eee]">
+                    <p className="w-[40%] font-[600] text-[18px]">Название</p>
+                    <p className="w-[30%] font-[600] text-[18px]">Короткое название</p>
+                    <p className="w-[30%] font-[600] text-[18px]">Код</p>
+                    <p className="w-[30%] font-[600] text-[18px]">Курс</p>
+                    <p className="w-[30%] font-[600] text-[18px]"></p>
+                  </div>
+                  {currency.map((item, index) => (
+                    <div key={index} className="flex w-full justify-around py-4 border-b border-b-[#eee]">
+                      <p className="w-[40%]">{item.name}</p>
+                      <p className="w-[30%]">{item.sh_name}</p>
+                      <p className="w-[30%]">{item.code}</p>
+                      <p className="w-[30%]">{item.well}</p>
+                      <p className="w-[30%]"><a onClick="" className="bg-[#a774ff] px-3 py-2 rounded-md text-[#fff] cursor-pointer">Установить</a></p>
+                    </div>
+                  ))}
+                </div>
               </div>
             </Tab>
           </Tabs>
