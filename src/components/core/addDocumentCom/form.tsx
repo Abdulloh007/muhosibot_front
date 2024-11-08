@@ -31,7 +31,7 @@ const emptyPos = {
 
 function Form() {
     const [doctypeList, setDoctypeList] = useState<DocumentType[]>([]);
-    const [groupList, setGroupList] = useState<any[]>([]);
+    const [groupList, setGroupList] = useState([]);
     const [productList, setProductList] = useState<any[]>([]);
     const [counterpartiesList, setCounterpartiesList] = useState<Counterparty[]>([]);
     const [templateList, setTemplateList] = useState<any[]>([]);
@@ -63,10 +63,7 @@ function Form() {
             headers: {
                 'Authorization': 'Bearer ' + localStorage.getItem(btoa('token'))
             }
-        }).then(res => {
-            setGroupList(res.data),
-            console.log("group->",groupList)
-        })
+        }).then(res => setGroupList(res.data))
 
         axios.get('/api/products', {
             headers: {
@@ -263,9 +260,9 @@ function Form() {
                                     autoComplete='off'
                                 />
                                 <datalist id="groups">
-                                    {/* {groupList.map((groupItem, index) => (
+                                    {groupList.map((groupItem, index) => (
                                         <option key={index} value={groupItem} />
-                                    ))} */}
+                                    ))}
                                 </datalist>
                             </label>
                         </div>
