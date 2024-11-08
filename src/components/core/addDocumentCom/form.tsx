@@ -63,7 +63,12 @@ function Form() {
             headers: {
                 'Authorization': 'Bearer ' + localStorage.getItem(btoa('token'))
             }
-        }).then(res => setGroupList(res.data))
+        }).then(res => {
+            if (res.data?.data) {
+                const entries:any = Object.entries(res.data.data);
+                setGroupList(entries);
+            }
+        })
 
         axios.get('/api/products', {
             headers: {
@@ -135,6 +140,7 @@ function Form() {
             products: products,
             group: group, 
         }
+            
         if(editId){
             axios.patch('/api/documents/' + editId, body, {
                 headers: {
@@ -260,8 +266,8 @@ function Form() {
                                     autoComplete='off'
                                 />
                                 <datalist id="groups">
-                                    {groupList.map((groupItem, index) => (
-                                        <option key={index} value={groupItem} />
+                                    {groupList.map(([key, groupItem]) => (
+                                        <option key={key} value={groupItem} />
                                     ))}
                                 </datalist>
                             </label>
