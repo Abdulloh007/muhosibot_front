@@ -12,7 +12,7 @@ const nextConfig = {
             {
                 source: '/wp-json/wp/v2/:path*',
                 //destination: 'http://31.128.39.113/api/:path*' // Proxy to Backend
-                destination: 'https://muhosib.tj/wp-json/wp/v2/:path*' // Proxy to Backend
+                destination: 'http://muhosib.tj/wp-json/wp/v2/:path*' // Proxy to Backend
             },
             // {
             //     source: '/static/:path*',
