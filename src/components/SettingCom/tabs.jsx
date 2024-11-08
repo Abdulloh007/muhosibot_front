@@ -384,7 +384,7 @@ const TabsCom = () => {
                     <p className="w-[30%] font-[600] text-[18px]">Короткое название</p>
                     <p className="w-[30%] font-[600] text-[18px]">Код</p>
                     <p className="w-[30%] font-[600] text-[18px]">Курс</p>
-                    <p className="w-[30%] font-[600] text-[18px]"></p>
+                    {/* <p className="w-[30%] font-[600] text-[18px]"></p> */}
                   </div>
                   {currency.map((item, index) => (
                     <div key={index} className="flex w-full justify-around py-4 border-b border-b-[#eee]">
@@ -392,7 +392,7 @@ const TabsCom = () => {
                       <p className="w-[30%]">{item.sh_name}</p>
                       <p className="w-[30%]">{item.code}</p>
                       <p className="w-[30%]">{item.well}</p>
-                      <p className="w-[30%]"><a onClick="" className="bg-[#a774ff] px-3 py-2 rounded-md text-[#fff] cursor-pointer">Установить</a></p>
+                      {/* <p className="w-[30%]"><a onClick="" className="bg-[#a774ff] px-3 py-2 rounded-md text-[#fff] cursor-pointer">Установить</a></p> */}
                     </div>
                   ))}
                 </div>

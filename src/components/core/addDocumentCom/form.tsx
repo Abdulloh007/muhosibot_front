@@ -31,7 +31,7 @@ const emptyPos = {
 
 function Form() {
     const [doctypeList, setDoctypeList] = useState<DocumentType[]>([]);
-    const [groupList, setGroupList] = useState<any[]>([]);
+    const [groupList, setGroupList] = useState([]);
     const [productList, setProductList] = useState<any[]>([]);
     const [counterpartiesList, setCounterpartiesList] = useState<Counterparty[]>([]);
     const [templateList, setTemplateList] = useState<any[]>([]);
@@ -65,7 +65,7 @@ function Form() {
             }
         }).then(res => {
             if (res.data?.data) {
-                const entries = Object.entries(res.data.data);
+                const entries:any = Object.entries(res.data.data);
                 setGroupList(entries);
             }
         })
@@ -266,9 +266,9 @@ function Form() {
                                     autoComplete='off'
                                 />
                                 <datalist id="groups">
-                                {groupList.map(([key, groupItem]) => (
-                                    <option key={key} value={groupItem} />
-                                ))}
+                                    {groupList.map(([key, groupItem]) => (
+                                        <option key={key} value={groupItem} />
+                                    ))}
                                 </datalist>
                             </label>
                         </div>
