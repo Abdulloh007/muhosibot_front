@@ -336,7 +336,7 @@ const TabsCom = () => {
                   </div>
                 </div>
 
-                {kkmSettings.length > 0 ? (
+                {kkmSettings.length < 0 ? (
                   kkmSettings.map((kkm, index) => (
                     <div key={index}>
                       <div className="mt-[40px] mb-[20px]">
