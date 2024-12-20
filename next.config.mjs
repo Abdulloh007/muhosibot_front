@@ -6,13 +6,13 @@ const nextConfig = {
         return [
             {
                 source: '/api/:path*',
-                // destination: 'http://31.128.39.113/api/:path*' // Proxy to Backend
-                destination: 'http://localhost:8000/api/:path*' // Proxy to Backend
+                destination: 'http://62.113.100.36/api/:path*' // Proxy to Backend
+                // destination: 'http://localhost:8000/api/:path*' // Proxy to Backend
             },
             {
                 source: '/wp-json/wp/v2/:path*',
                 //destination: 'http://31.128.39.113/api/:path*' // Proxy to Backend
-                destination: 'http://muhosib.tj/wp-json/wp/v2/:path*' // Proxy to Backend
+                destination: 'https://muhosib.tj/wp-json/wp/v2/:path*' // Proxy to Backend
             },
             // {
             //     source: '/static/:path*',
