@@ -1,6 +1,7 @@
 import { Inter } from "next/font/google";
 import StoreProvider from "./StoreProvider";
 import "./globals.css";
+import { ToastList } from "@/components/Toaster";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -21,7 +22,9 @@ export default function RootLayout({
       />
 
       <body className={`${inter.className}`}>
+
         <StoreProvider>
+          <ToastList></ToastList>
           {children}
         </StoreProvider>
       </body>

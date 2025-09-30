@@ -9,21 +9,25 @@ interface Props {
 }
 
 export function Toaster(props: Props) {
-    const [classList, setClassList] = useState('p-2 w-full bg-gray-400 text-white text-base rounded-sm transition-all mb-3')
+    const [classList, setClassList] = useState('bg-gray-400 text-white')
 
     useEffect(() => {
         if (props.color == 'danger') {
-            setClassList('p-2 w-full bg-red-500 text-white text-base rounded-sm transition-all mb-3')
+            setClassList('bg-red-500 text-white')
         } else if (props.color == 'warn') {
-            setClassList('p-2 w-full bg-amber-300 text-black text-base rounded-sm transition-all mb-3')
+            setClassList('bg-amber-300 text-black')
         }
 
         setTimeout(() => setClassList(classList + ' absolute z-[-1] pointer-events-none opacity-0'), 5000)
     }, [])
 
+    const closeToast = () => {
+        setClassList(classList + ' absolute z-[-1] pointer-events-none opacity-0')
+    }
+
     return (
         <>
-            <div className={classList}>
+            <div onClick={closeToast} className={'p-2 w-full text-base rounded-md transition-all mb-3 cursor-pointer shadow-md ' + classList}>
                 {props.text}
             </div>
         </>
@@ -32,9 +36,10 @@ export function Toaster(props: Props) {
 
 export function ToastList() {
     const toastList = useAppSelector(state => state.toaste.list)
+    
     return (
         <>
-            <div className="fixed flex flex-col top-5 right-5 w-[250px] h-full pointer-events-none">
+            <div className="fixed flex flex-col top-5 right-5 w-[250px] z-50">
                 {toastList.map((item: any, idx: any) => (<Toaster key={idx} color={item.color} text={item.text} />))}
             </div>
         </>

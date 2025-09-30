@@ -4,12 +4,17 @@ import Image from 'next/image'
 import { useState } from 'react';
 import axios from 'axios';
 import { useRouter } from 'next/navigation';
+import { addToList } from '@/lib/features/user/toastSlice';
+import { useAppDispatch } from '@/lib/hooks';
+
 
 export default function Auth() {
   const [phone, setPhone] = useState('')
   const [password, setPassword] = useState('')
   const router = useRouter()
-  function handleSubmit (e: Event) {
+  const dispatch = useAppDispatch()
+  
+  function handleSubmit(e: Event) {
     e.preventDefault()
     axios.post('/api/auth', {
       phone,
@@ -17,6 +22,18 @@ export default function Auth() {
     }).then((res: any) => {
       localStorage.setItem(btoa('token'), res.data.token)
       router.push('/dashboard')
+    }).catch((err: any) => {
+      if (err.response.status === 401) {
+        dispatch(addToList({
+          color: 'danger',
+          text: 'Неверный номер телефона или пароль'
+        }))
+      } else {
+        dispatch(addToList({
+          color: 'warn',
+          text: 'Произошла ошибка, попробуйте позже'
+        }))
+      }
     })
   }
 
@@ -29,16 +46,17 @@ export default function Auth() {
             <p className='text-[36px] font-bold text-purpleLg '>Мухосиби Ман</p>
             <p className='text-[22px] font-bold text-purpleMid'>Осон, Кулай, Тез</p>
           </div>
-          
+
           <form onSubmit={(e: any) => handleSubmit(e)} className="w-[374px] transition">
             <div className='flex flex-col'>
-              
+
               <input
                 type="text"
                 placeholder="Номер телефона"
                 value={phone}
                 onChange={(e) => setPhone(e.target.value)}
                 className='border-b-2 h-[30px] bg-[#F1F1F1] mt-[20px] pl-[5px] text-[14px] hover:border-b-2  focus:outline-none'
+                required
               />
               <input
                 type="password"
@@ -46,6 +64,7 @@ export default function Auth() {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 className='border-b-2 h-[30px] bg-[#F1F1F1] mt-[20px] pl-[5px] text-[14px] hover:border-b-2  focus:outline-none'
+                required
               />
 
               <button className='bg-purple-600 rounded text-white p-1 mt-[20px]'>Войдите</button>
